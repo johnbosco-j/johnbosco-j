@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="40" viewBox="0 0 1200 40" role="img" aria-label="">
+<title></title>
+<style>
+.spin{animation:spin 1.6s linear infinite;transform-box:fill-box;transform-origin:center}
+.tw{animation:tw ease-in-out infinite alternate}
+.fade{opacity:0;animation:fadeUp .8s ease-out forwards}
+.pulse{animation:pulse 1.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.flk{animation:flk 2.4s ease-in-out infinite alternate}
+.petal{animation:fall linear infinite;transform-box:fill-box;transform-origin:center}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes tw{from{opacity:.12}to{opacity:.95}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+@keyframes flk{0%{opacity:.5}40%{opacity:1}70%{opacity:.7}100%{opacity:.95}}
+@keyframes fall{from{transform:translate(0,0) rotate(0deg)}to{transform:translate(-260px,820px) rotate(600deg)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.fade{opacity:1}}.run{animation:run 5s cubic-bezier(.6,0,.4,1) infinite}@keyframes run{from{transform:translateX(-20px)}to{transform:translateX(1300px)}}</style>
+<defs></defs>
+
+<defs>
+  <linearGradient id="dl" x1="0" x2="1"><stop offset="0" stop-color="#2F6BFF" stop-opacity="0"/><stop offset=".3" stop-color="#2F6BFF"/><stop offset=".5" stop-color="#E63946"/><stop offset=".7" stop-color="#2F6BFF"/><stop offset="1" stop-color="#2F6BFF" stop-opacity="0"/></linearGradient>
+  <linearGradient id="trail" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".9"/></linearGradient>
+</defs>
+<rect x="0" y="19" width="1200" height="2" rx="1" fill="url(#dl)" opacity=".7"/>
+<g class="run"><rect x="-90" y="19" width="90" height="2" fill="url(#trail)"/><circle cy="20" r="3" fill="#fff"/></g>
+<g transform="translate(600 20)"><rect x="-8" y="-8" width="16" height="16" transform="rotate(45)" fill="#070A1F" stroke="#E63946" stroke-width="2"/><circle r="2.5" fill="#E63946"/></g>
+</svg>

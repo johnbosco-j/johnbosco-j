@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="84" viewBox="0 0 1200 84" role="img" aria-label="About">
+<title>About</title>
+<style>
+.spin{animation:spin 1.6s linear infinite;transform-box:fill-box;transform-origin:center}
+.tw{animation:tw ease-in-out infinite alternate}
+.fade{opacity:0;animation:fadeUp .8s ease-out forwards}
+.pulse{animation:pulse 1.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.flk{animation:flk 2.4s ease-in-out infinite alternate}
+.petal{animation:fall linear infinite;transform-box:fill-box;transform-origin:center}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes tw{from{opacity:.12}to{opacity:.95}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+@keyframes flk{0%{opacity:.5}40%{opacity:1}70%{opacity:.7}100%{opacity:.95}}
+@keyframes fall{from{transform:translate(0,0) rotate(0deg)}to{transform:translate(-260px,820px) rotate(600deg)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.fade{opacity:1}}</style>
+<defs><path id="m125" d="M300 16Q222 16 165-29Q108-74 78-157Q48-240 48-354Q48-469 78-552Q108-635 165-680Q222-726 300-726Q379-726 436-680Q492-635 522-552Q552-469 552-354Q552-240 522-157Q492-74 436-29Q379 16 300 16M300-82Q345-82 377-114Q408-147 426-208Q443-269 443-354Q443-441 426-502Q425-505 424-508L216-123Q220-119 224-115Q256-82 300-82M176-202L384-587Q380-591 377-596Q345-628 300-628Q256-628 224-595Q192-563 175-502Q157-441 157-354Q157-269 175-208Q175-205 176-202"/><path id="m126" d="M544 0L56 0L56-99L273-99L273-506L91-506L91-595L181-595Q220-595 244-606Q268-618 279-643Q290-668 290-710L378-710L378-99L544-99"/><path id="d4" d="M154 0L18 0L202-700L432-700L616 0L480 0L442-154L192-154L154 0M308-617L223-276L411-276L326-617"/><path id="d31" d="M368 14Q301 14 265-9Q229-32 212-60L194-60L194 0L70 0L70-700L196-700L196-439L214-439Q225-457 244-473Q262-489 293-499Q323-510 368-510Q428-510 479-480Q530-451 561-394Q592-337 592-256L592-240Q592-159 561-102Q530-45 479-15Q428 14 368 14M330-96Q388-96 427-133Q466-171 466-243L466-253Q466-325 428-362Q389-400 330-400Q272-400 233-362Q194-325 194-253L194-243Q194-171 233-133Q272-96 330-96"/><path id="d44" d="M306 14Q232 14 173-16Q114-46 80-103Q46-160 46-240L46-256Q46-336 80-393Q114-450 173-480Q232-510 306-510Q380-510 439-480Q498-450 532-393Q566-336 566-256L566-240Q566-160 532-103Q498-46 439-16Q380 14 306 14M306-98Q364-98 402-135Q440-173 440-243L440-253Q440-323 403-360Q365-398 306-398Q248-398 210-360Q172-323 172-253L172-243Q172-173 210-135Q248-98 306-98"/><path id="d50" d="M259 8Q201 8 158-18Q114-45 90-92Q66-139 66-200L66-496L192-496L192-210Q192-154 220-126Q247-98 298-98Q356-98 388-136Q420-175 420-244L420-496L546-496L546 0L422 0L422-65L404-65Q392-40 359-16Q326 8 259 8"/><path id="d49" d="M400 0L260 0Q211 0 181-30Q150-61 150-112L150-392L26-392L26-496L150-496L150-650L276-650L276-496L412-496L412-392L276-392L276-134Q276-104 304-104L400-104"/></defs>
+
+<defs><linearGradient id="ln" gradientUnits="userSpaceOnUse" x1="206.416" y1="0" x2="1176" y2="0"><stop offset="0" stop-color="#E63946"/><stop offset=".55" stop-color="#2F6BFF"/><stop offset="1" stop-color="#2F6BFF" stop-opacity="0"/></linearGradient></defs>
+<g fill="#E63946" class="fade"><use href="#m125" transform="translate(24 54) scale(0.015)"/><use href="#m126" transform="translate(33 54) scale(0.015)"/></g>
+<g fill="#F2F5FF" class="fade" style="animation-delay:.1s"><use href="#d4" transform="translate(70 56) scale(0.036)"/><use href="#d31" transform="translate(92.82 56) scale(0.036)"/><use href="#d44" transform="translate(115.79 56) scale(0.036)"/><use href="#d50" transform="translate(137.82 56) scale(0.036)"/><use href="#d49" transform="translate(160 56) scale(0.036)"/></g>
+<path d="M206.416 44 L1176 44" stroke="url(#ln)" stroke-width="2" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"><animate attributeName="stroke-dashoffset" from="1" to="0" dur="1.2s" begin=".3s" fill="freeze"/></path>
+</svg>
