@@ -206,15 +206,15 @@ const STAMP_CSS = `.stamp{animation:stamp .6s cubic-bezier(.2,1.4,.4,1) both;tra
 const label = (x, y, str) =>
   `<rect x="${x}" y="${y - 10}" width="10" height="10" rx="2" fill="${C.red}"/>${text(str, { x: x + 18, y, size: 12.5, font: "m", spacing: 2.5, fill: C.muted })}`;
 
-/** Dark rounded card with an optional light travelling round its border. */
-function card(w, h, accent, inner, { comet = true } = {}) {
+/** Dark rounded card with an optional light travelling round its border. `id` keeps defs unique when one SVG holds several cards. */
+function card(w, h, accent, inner, { comet = true, id = "c" } = {}) {
   const per = 2 * (w + h);
   return `<defs>
-  <clipPath id="cardclip"><rect width="${w}" height="${h}" rx="20"/></clipPath>
-  <linearGradient id="cardbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${C.deep}"/><stop offset="1" stop-color="${C.indigo}"/></linearGradient>
-  <radialGradient id="glow"><stop offset="0" stop-color="${accent}" stop-opacity=".16"/><stop offset="1" stop-color="${accent}" stop-opacity="0"/></radialGradient>
+  <clipPath id="${id}clip"><rect width="${w}" height="${h}" rx="20"/></clipPath>
+  <linearGradient id="${id}bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${C.deep}"/><stop offset="1" stop-color="${C.indigo}"/></linearGradient>
+  <radialGradient id="${id}glow"><stop offset="0" stop-color="${accent}" stop-opacity=".16"/><stop offset="1" stop-color="${accent}" stop-opacity="0"/></radialGradient>
 </defs>
-<g clip-path="url(#cardclip)"><rect width="${w}" height="${h}" fill="url(#cardbg)"/><circle cx="${w}" cy="0" r="${h * 0.8}" fill="url(#glow)"/>${inner}</g>
+<g clip-path="url(#${id}clip)"><rect width="${w}" height="${h}" fill="url(#${id}bg)"/><circle cx="${w}" cy="0" r="${Math.min(h * 0.8, 420)}" fill="url(#${id}glow)"/>${inner}</g>
 <rect x="1" y="1" width="${w - 2}" height="${h - 2}" rx="19" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="1.5"/>
 ${comet ? `<rect x="1" y="1" width="${w - 2}" height="${h - 2}" rx="19" fill="none" stroke="${accent}" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="130 ${per - 130}"><animate attributeName="stroke-dashoffset" from="0" to="-${per}" dur="7s" repeatCount="indefinite"/></rect>` : ""}`;
 }
@@ -401,7 +401,7 @@ ${text(title, { x: 70, y: 56, size: 36, font: "d", fill: dark ? C.text : C.night
 }
 
 // ── project cards ─────────────────────────────────────────────────────────────
-function project(m) {
+function project(m, id = "c") {
   const W = 600, H = 340;
   const tone = { live: C.green, gold: C.gold, done: C.sky }[m.status.tone];
   const icon = {
@@ -430,7 +430,7 @@ function project(m) {
     })
     .join("");
 
-  return doc(W, H, `${m.title} — ${m.summary}`, card(W, H, m.accent, `
+  return card(W, H, m.accent, `
 <g transform="translate(28 28)">
   <rect width="56" height="56" rx="14" fill="${m.accent}" fill-opacity=".14" stroke="${m.accent}" stroke-opacity=".55"/>
   ${text(m.title[0], { x: 28, y: 38, size: 28, font: "d", fill: m.accent, anchor: "middle" })}
@@ -445,7 +445,7 @@ ${text(m.kind, { x: 101, y: 86, size: 11, font: "m", spacing: 1.2, fill: C.muted
 ${summary}
 <line x1="28" y1="194" x2="${W - 28}" y2="194" stroke="#fff" stroke-opacity=".08"/>
 ${metrics}
-${chips}`));
+${chips}`, { id });
 }
 
 // ── achievements ──────────────────────────────────────────────────────────────
@@ -607,33 +607,305 @@ ${glyph(slug, x + 16, y + 11, 24)}${text(label, { x: x + 49, y: y + 29.5, size: 
   return doc(W, H, `Tech stack: ${cfg.stack.map(([n, list]) => `${n.toLowerCase()} ${list.map(([, l]) => l).join(", ")}`).join("; ")}`, card(W, H, C.blue, body, { comet: false }));
 }
 
-// ── "currently" card, sized to sit beside the 4:3 GIF ─────────────────────────
+// ── "currently": three columns on desktop ───────────────────────────────────
+const NOW_TINTS = [C.green, C.gold, C.sky];
+
 function now() {
-  const W = 760, H = 361, dx = 50;
-  const rows = cfg.now
+  const W = 1200, H = 224, colW = (W - 56) / cfg.now.length;
+  const cols = cfg.now
     .map(([kicker, title, detail], i) => {
-      const y = 62 + i * 98, tint = [C.green, C.gold, C.sky][i % 3];
+      const x = 28 + i * colW + 26, tint = NOW_TINTS[i % 3];
+      const lines = wrap(detail, 16, "s", colW - 60).slice(0, 2);
       return `<g class="fade" style="animation-delay:${0.15 * i}s">
-<circle cx="${dx}" cy="${y - 5}" r="7" fill="${C.deep}" stroke="${tint}" stroke-width="3"/>
-${text(kicker, { x: dx + 28, y, size: 11.5, font: "m", spacing: 2.5, fill: tint })}
-${text(title, { x: dx + 28, y: y + 32, size: 25, font: "d", fill: C.text, max: W - dx - 60 })}
-${text(detail, { x: dx + 28, y: y + 58, size: 15.5, font: "s", fill: C.soft, max: W - dx - 60 })}</g>`;
+${i ? `<line x1="${28 + i * colW}" y1="40" x2="${28 + i * colW}" y2="${H - 50}" stroke="#fff" stroke-opacity=".08"/>` : ""}
+<circle cx="${x + 5}" cy="52" r="5" fill="${C.deep}" stroke="${tint}" stroke-width="2.5"/>
+${text(kicker, { x: x + 20, y: 57, size: 11.5, font: "m", spacing: 2.5, fill: tint })}
+${text(title, { x, y: 98, size: 26, font: "d", fill: C.text, max: colW - 50 })}
+${lines.map((l, k) => text(l, { x, y: 130 + k * 23, size: 16, font: "s", fill: C.soft })).join("")}</g>`;
     })
     .join("");
-  return doc(W, H, cfg.now.map(([k, t, d]) => `${k}: ${t} — ${d}`).join(". "), card(W, H, C.green, `
-<line x1="${dx}" y1="57" x2="${dx}" y2="${57 + (cfg.now.length - 1) * 98}" stroke="#fff" stroke-opacity=".12" stroke-width="2"/>
-${rows}
-${text(cfg.nowUpdated, { x: W - 28, y: H - 22, size: 10, font: "m", spacing: 2, fill: C.dim, anchor: "end" })}`, { comet: false }));
+  return doc(W, H, cfg.now.map(([k, t, d]) => `${k}: ${t} — ${d}`).join(". "), card(W, H, C.green, `${cols}
+${text(cfg.nowUpdated, { x: W - 28, y: H - 20, size: 10, font: "m", spacing: 2, fill: C.dim, anchor: "end" })}`, { comet: false }));
 }
 
-// ── smaller "other work" cards ────────────────────────────────────────────────
+// ── "other work": one linked row each ─────────────────────────────────────────
+const arrow = (x, y, r, color) =>
+  `<g transform="translate(${x} ${y})"><circle r="${r}" fill="#fff" fill-opacity=".06" stroke="#fff" stroke-opacity=".14"/><path d="M${-r / 3} ${r / 3} L${r / 3} ${-r / 3} M${-r / 6} ${-r / 3} H${r / 3} V${r / 6}" fill="none" stroke="${color}" stroke-width="${r / 7.5}" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+
 function work(w) {
-  const W = 600, H = 150;
-  return doc(W, H, `${w.title} — ${w.desc}`, card(W, H, w.accent, `
-${text(w.kicker, { x: 28, y: 42, size: 11, font: "m", spacing: 1.5, fill: w.accent, max: 480 })}
-${text(w.title, { x: 28, y: 82, size: 28, font: "d", fill: C.text, max: 480 })}
-${text(w.desc, { x: 28, y: 116, size: 16, font: "s", fill: C.soft, max: W - 56 })}
-<g transform="translate(${W - 58} 24)"><circle cx="15" cy="15" r="15" fill="#fff" fill-opacity=".06" stroke="#fff" stroke-opacity=".14"/><path d="M10 20 L20 10 M12.5 10 H20 V17.5" fill="none" stroke="${w.accent}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>`, { comet: false }));
+  const W = 1200, H = 96;
+  return doc(W, H + 14, `${w.title} — ${w.desc}`, card(W, H, w.accent, `
+<rect x="0" y="0" width="5" height="${H}" fill="${w.accent}"/>
+${text(w.kicker, { x: 32, y: 38, size: 11, font: "m", spacing: 1.5, fill: w.accent, max: 440 })}
+${text(w.title, { x: 32, y: 72, size: 26, font: "d", fill: C.text, max: 440 })}
+${text(w.desc, { x: 500, y: 57, size: 17, font: "s", fill: C.soft, max: 580 })}
+${arrow(W - 48, H / 2, 17, w.accent)}`, { comet: false }));
+}
+
+// ── phone layouts (served to screens ≤ 600px via <picture>) ──────────────────
+// A phone shows the README ~300–350px wide, so these are drawn at 600 wide with
+// roughly double-size type. They carry their own backgrounds, because GitHub
+// rewrites theme media queries and a width query can't be combined with one.
+const PHONE_TITLE = "#3D6BFF"; // readable on both GitHub themes
+
+function headerM(title, index) {
+  const W = 600, lx = Math.min(58 + measure(title, 38, "d") + 20, 540);
+  return doc(W, 80, title, `
+<defs><linearGradient id="ln" gradientUnits="userSpaceOnUse" x1="${lx}" y1="0" x2="${W - 8}" y2="0"><stop offset="0" stop-color="${C.red}"/><stop offset=".55" stop-color="${C.blue}"/><stop offset="1" stop-color="${C.blue}" stop-opacity="0"/></linearGradient></defs>
+${text(String(index).padStart(2, "0"), { x: 8, y: 52, size: 20, font: "m", fill: C.red })}
+${text(title, { x: 50, y: 54, size: 38, font: "d", fill: PHONE_TITLE })}
+<path d="M${lx} 40 L${W - 8} 40" stroke="url(#ln)" stroke-width="3" stroke-linecap="round"/>`);
+}
+
+function bannerM() {
+  const W = 600, MX = 440, MY = 170;
+  const { first, last } = cfg.name;
+  const nameW = Math.min(470, measure(first, 84, "d", 1));
+  const role = wrap(cfg.role.replace(/\s+·\s+/g, " · "), 24, "s", W - 80);
+  let cx = 40, cy = 540 + (role.length - 1) * 32;
+  const chips = cfg.chips
+    .map((c) => {
+      const w = measure(c, 17, "m", 1.5) + 36;
+      if (cx + w > W - 40) (cx = 40), (cy += 50);
+      const g = `<g transform="translate(${cx} ${cy})"><rect width="${w}" height="40" rx="20" fill="${C.blue}" fill-opacity=".14" stroke="${C.blue}" stroke-opacity=".55"/>${text(c, { x: w / 2, y: 26, size: 17, font: "m", spacing: 1.5, fill: "#BFD0FF", anchor: "middle" })}</g>`;
+      cx += w + 12;
+      return g;
+    })
+    .join("");
+  const H = cy + 40 + 44;
+  return doc(W, H, `${cfg.name.full} — ${cfg.role.replace(/\s+/g, " ")}`, `
+<defs>
+  <clipPath id="frame"><rect width="${W}" height="${H}" rx="28"/></clipPath>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#050818"/><stop offset=".55" stop-color="#111947"/><stop offset=".85" stop-color="#321C4F"/><stop offset="1" stop-color="#5E2140"/></linearGradient>
+  <radialGradient id="moon" cx=".42" cy=".38" r=".75"><stop offset="0" stop-color="#FFFBEA"/><stop offset=".6" stop-color="#FFE7A8"/><stop offset="1" stop-color="#F2BE62"/></radialGradient>
+  <radialGradient id="halo"><stop offset="0" stop-color="#FFD98A" stop-opacity=".5"/><stop offset="1" stop-color="#FFD98A" stop-opacity="0"/></radialGradient>
+  <linearGradient id="nameFill" gradientUnits="userSpaceOnUse" x1="0" y1="330" x2="0" y2="392"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#BFD0FF"/></linearGradient>
+</defs>
+<g clip-path="url(#frame)">
+  <rect width="${W}" height="${H}" fill="url(#sky)"/>
+  ${stars(50, 7, W, 460)}
+  <circle class="halo" cx="${MX}" cy="${MY}" r="190" fill="url(#halo)"/>
+  <circle cx="${MX}" cy="${MY}" r="100" fill="url(#moon)"/>
+  <g transform="translate(${MX} ${MY + 8}) scale(1.25)"><g class="bob">${ninja()}</g></g>
+  ${petals(8, 3, 60, 660)}
+  <g transform="translate(40 60)">
+    <rect width="${measure(cfg.tag, 16, "m", 2.5) + 60}" height="40" rx="20" fill="${C.red}" fill-opacity=".14" stroke="${C.red}" stroke-opacity=".55"/>
+    <circle class="pulse" cx="24" cy="20" r="6" fill="#FF4D5A"/>
+    ${text(cfg.tag, { x: 42, y: 26, size: 16, font: "m", spacing: 2.5, fill: "#FF9AA2" })}
+  </g>
+  ${text(first, { x: 44, y: 392, size: 84, font: "d", spacing: 1, max: 470, fill: C.red })}
+  ${text(first, { x: 40, y: 388, size: 84, font: "d", spacing: 1, max: 470, fill: "url(#nameFill)" })}
+  <g transform="translate(${Math.min(40 + nameW + 14, W - 70)} 318)"><rect width="52" height="52" rx="10" fill="${C.seal}"/><text x="26" y="37" text-anchor="middle" font-family="${JP}" font-size="30" font-weight="700" fill="#FFF3EC">忍</text></g>
+  ${text(last, { x: 42, y: 444, size: 42, font: "i", fill: C.sky })}
+  ${role.map((l, i) => text(l, { x: 42, y: 486 + i * 32, size: 24, font: "s", fill: "#D5DCFF" })).join("")}
+  ${chips}
+</g>
+<rect x="1" y="1" width="${W - 2}" height="${H - 2}" rx="27" fill="none" stroke="${C.blue}" stroke-opacity=".35" stroke-width="2"/>`,
+    `.halo{animation:halo 5s ease-in-out infinite}.bob{animation:bob 3.2s ease-in-out infinite}
+@keyframes halo{0%,100%{opacity:.7}50%{opacity:1}}@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}`);
+}
+
+function introM() {
+  const p = paragraph(cfg.intro, { x: 300, y: 64, size: 25, lineH: 38, maxW: 530, fill: C.soft, strong: C.text });
+  const H = 64 + (p.lines - 1) * 38 + 40;
+  return doc(600, H, cfg.intro.map(([s]) => s).join(""), card(600, H, C.blue, `<g class="fade">${p.svg}</g>`, { comet: false }));
+}
+
+function aboutM() {
+  const W = 600, x0 = 64, x1 = 536;
+  let y = 150, rows = "";
+  cfg.about.forEach(([name, value], i) => {
+    const lines = wrap(value.replace(/\s{2,}/g, " "), 27, "sm", x1 - x0);
+    rows += `<g class="fade" style="animation-delay:${(0.6 + i * 0.12).toFixed(2)}s">
+${text(`${String(i + 1).padStart(2, "0")}  ${name}`, { x: x0, y, size: 17, font: "m", spacing: 2, fill: C.brown })}
+${lines.map((l, k) => text(l, { x: x0, y: y + 40 + k * 36, size: 27, font: "sm", fill: C.ink })).join("")}
+<line x1="${x0}" y1="${y + 40 + (lines.length - 1) * 36 + 22}" x2="${x1}" y2="${y + 40 + (lines.length - 1) * 36 + 22}" stroke="${C.brown}" stroke-opacity=".22" stroke-dasharray="3 6"/></g>`;
+    y += 40 + (lines.length - 1) * 36 + 58;
+  });
+  const motto = wrap(`“${cfg.motto}”`, 32, "i", 225);
+  const ey = y + 110;
+  const H = ey + 150 + motto.length * 38 + 90;
+  const pt = (deg, r) => [W / 2 + r * Math.cos((deg * Math.PI) / 180), ey + r * Math.sin((deg * Math.PI) / 180)].map((n) => n.toFixed(1));
+  const [ax, ay] = pt(-70, 90), [bx, by] = pt(-100, 90);
+  const roller = (ry) => `<rect x="20" y="${ry}" width="${W - 40}" height="30" rx="10" fill="url(#woodH)"/><rect x="6" y="${ry - 4}" width="20" height="38" rx="6" fill="url(#brassV)"/><rect x="${W - 26}" y="${ry - 4}" width="20" height="38" rx="6" fill="url(#brassV)"/>`;
+  return doc(W, H, `About ${cfg.name.full}: ${cfg.about.map(([l, v]) => `${l.toLowerCase()} ${v}`).join("; ")}`, `
+<defs>
+  <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F8EED8"/><stop offset="1" stop-color="#EEDDBD"/></linearGradient>
+  <linearGradient id="woodH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3E120B"/><stop offset=".45" stop-color="#8C3A22"/><stop offset="1" stop-color="#3A0F09"/></linearGradient>
+  <linearGradient id="brassV" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9C6F22"/><stop offset=".5" stop-color="#F2D27A"/><stop offset="1" stop-color="#8E6420"/></linearGradient>
+</defs>
+<rect x="36" y="30" width="${W - 72}" height="${H - 60}" fill="url(#paper)"/>
+<rect x="36" y="30" width="${W - 72}" height="22" fill="#1B2A6B"/><rect x="36" y="${H - 52}" width="${W - 72}" height="22" fill="#1B2A6B"/>
+${roller(16)}${roller(H - 46)}
+${text(cfg.name.full, { x: x0, y: 112, size: 40, font: "d", fill: C.ink, max: x1 - x0 })}
+<path d="M${x0} 128 Q300 122 ${x1} 130" fill="none" stroke="${C.seal}" stroke-width="3.5" stroke-linecap="round" stroke-opacity=".75"/>
+${rows}
+<path d="M${ax} ${ay} A90 90 0 1 1 ${bx} ${by}" fill="none" stroke="${C.ink}" stroke-width="14" stroke-linecap="round" stroke-opacity=".9" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"><animate attributeName="stroke-dashoffset" from="1" to="0" dur="1.4s" begin=".8s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".5 0 .3 1"/></path>
+${text("J", { x: W / 2 - 5, y: ey + 44, size: 130, font: "i", fill: C.seal, anchor: "middle" })}
+${motto.map((l, i) => text(l, { x: W / 2, y: ey + 150 + i * 38, size: 32, font: "i", fill: C.ink, anchor: "middle" })).join("")}
+${text(`— ${cfg.mottoBy}`, { x: W / 2, y: ey + 150 + motto.length * 38 + 10, size: 15, font: "m", spacing: 4, fill: C.brown, anchor: "middle" })}`);
+}
+
+function projectM(m, id) {
+  const W = 600, H = 560;
+  const tone = { live: C.green, gold: C.gold, done: C.sky }[m.status.tone];
+  const pillW = measure(m.status.text, 18, "m", 1.5) + 62;
+  const icon = {
+    live: `<circle class="pulse" cx="26" cy="20" r="6.5" fill="${tone}"/>`,
+    gold: `<path d="${STAR}" transform="translate(26 20) scale(1.6)" fill="${tone}"/>`,
+    done: `<path d="M18 20.5 L23.5 26 L33 15" fill="none" stroke="${tone}" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>`,
+  }[m.status.tone];
+  const summary = wrap(m.summary, 26, "s", W - 64).slice(0, 4);
+  const my = 214 + summary.length * 37 + 26;
+  const metrics = m.metrics
+    .map(([v, l], i) => `<g transform="translate(${32 + i * 184} 0)">${text(v, { y: my + 50, size: 40, font: "d", fill: m.accent, max: 172 })}${text(l, { y: my + 80, size: 17, font: "m", fill: C.muted, max: 172 })}</g>`)
+    .join("");
+  return card(W, H, m.accent, `
+<g transform="translate(32 32)"><rect width="80" height="80" rx="20" fill="${m.accent}" fill-opacity=".14" stroke="${m.accent}" stroke-opacity=".55"/>${text(m.title[0], { x: 40, y: 54, size: 40, font: "d", fill: m.accent, anchor: "middle" })}</g>
+${text(m.title, { x: 134, y: 72, size: 42, font: "d", fill: C.text, max: W - 166 })}
+${text(m.kind.replace(/\s{2,}/g, " "), { x: 135, y: 104, size: 16, font: "m", spacing: 1, fill: C.muted, max: W - 166 })}
+<g transform="translate(32 138)"><rect width="${pillW}" height="40" rx="20" fill="${tone}" fill-opacity=".12" stroke="${tone}" stroke-opacity=".5"/>${icon}${text(m.status.text, { x: 46, y: 26.5, size: 18, font: "m", spacing: 1.5, fill: tone })}</g>
+${summary.map((l, i) => text(l, { x: 32, y: 226 + i * 37, size: 26, font: "s", fill: C.soft })).join("")}
+<line x1="32" y1="${my}" x2="${W - 32}" y2="${my}" stroke="#fff" stroke-opacity=".08"/>
+${metrics}`, { id, comet: false });
+}
+
+function workM(w) {
+  const W = 600, H = 176;
+  return doc(W, H + 18, `${w.title} — ${w.desc}`, card(W, H, w.accent, `
+<rect x="0" y="0" width="7" height="${H}" fill="${w.accent}"/>
+${text(w.kicker.replace(/\s{2,}/g, " "), { x: 34, y: 48, size: 16, font: "m", spacing: 1.5, fill: w.accent, max: 460 })}
+${text(w.title, { x: 34, y: 94, size: 36, font: "d", fill: C.text, max: 470 })}
+${text(w.desc, { x: 34, y: 140, size: 23, font: "s", fill: C.soft, max: W - 68 })}
+${arrow(W - 50, 50, 24, w.accent)}`, { comet: false }));
+}
+
+function stackM() {
+  const W = 600, x0 = 32, x1 = W - 32, pillH = 58;
+  let y = 58, body = "";
+  cfg.stack.forEach(([name, items], row) => {
+    body += text(name, { x: x0, y, size: 17, font: "m", spacing: 2.5, fill: C.muted });
+    y += 22;
+    let x = x0;
+    items.forEach(([slug, label]) => {
+      const w = 20 + 30 + 12 + measure(label, 23, "sm") + 22;
+      if (x + w > x1) (x = x0), (y += pillH + 12);
+      body += `<rect x="${r2(x)}" y="${y}" width="${r2(w)}" height="${pillH}" rx="${pillH / 2}" fill="#fff" fill-opacity=".05" stroke="#fff" stroke-opacity=".12"/>${glyph(slug, x + 20, y + 14, 30)}${text(label, { x: x + 62, y: y + 37, size: 23, font: "sm", fill: C.text })}`;
+      x += w + 12;
+    });
+    y += pillH + 52;
+    if (row < cfg.stack.length - 1) body += `<line x1="${x0}" y1="${y - 34}" x2="${x1}" y2="${y - 34}" stroke="#fff" stroke-opacity=".06"/>`;
+  });
+  const H = y - 24;
+  return doc(W, H, `Tech stack: ${cfg.stack.map(([n, list]) => `${n.toLowerCase()} ${list.map(([, l]) => l).join(", ")}`).join("; ")}`, card(W, H, C.blue, body, { comet: false }));
+}
+
+function nowM() {
+  const W = 600, dx = 50;
+  let y = 64, rows = "";
+  cfg.now.forEach(([kicker, title, detail], i) => {
+    const tint = NOW_TINTS[i % 3], lines = wrap(detail.replace(/\s{2,}/g, " "), 23, "s", W - dx - 70);
+    rows += `<circle cx="${dx}" cy="${y - 7}" r="9" fill="${C.deep}" stroke="${tint}" stroke-width="3.5"/>
+${text(kicker, { x: dx + 32, y, size: 17, font: "m", spacing: 2.5, fill: tint })}
+${text(title, { x: dx + 32, y: y + 44, size: 34, font: "d", fill: C.text, max: W - dx - 70 })}
+${lines.map((l, k) => text(l, { x: dx + 32, y: y + 82 + k * 32, size: 23, font: "s", fill: C.soft })).join("")}`;
+    y += 82 + (lines.length - 1) * 32 + 64;
+  });
+  const H = y + 16;
+  return doc(W, H, cfg.now.map(([k, t, d]) => `${k}: ${t} — ${d}`).join(". "), card(W, H, C.green, `
+<line x1="${dx}" y1="57" x2="${dx}" y2="${y - 146}" stroke="#fff" stroke-opacity=".12" stroke-width="3"/>
+${rows}
+${text(cfg.nowUpdated, { x: W - 32, y: H - 28, size: 14, font: "m", spacing: 2, fill: C.dim, anchor: "end" })}`, { comet: false }));
+}
+
+function achievementsM() {
+  const W = 600, list = cfg.achievements, tints = [C.gold, C.sky, C.red, "#B69CFF", C.green];
+  const cellH = 270, rows = Math.ceil(list.length / 2), H = rows * cellH + 30;
+  const medals = list
+    .map(([big, title, small], i) => {
+      const r0 = Math.floor(i / 2), inRow = Math.min(2, list.length - r0 * 2);
+      const cx = inRow === 1 ? W / 2 : 150 + (i % 2) * 300, cy = 40 + r0 * cellH + 88, t = tints[i % tints.length];
+      return `<circle cx="${cx}" cy="${cy}" r="96" fill="none" stroke="${t}" stroke-opacity=".45" stroke-width="2.5" stroke-dasharray="4 9"/>
+<circle cx="${cx}" cy="${cy}" r="82" fill="${C.night}" stroke="${t}" stroke-width="9"/>
+${text(big, { x: cx, y: cy + 17, size: 50, font: "d", fill: t, anchor: "middle", max: 124 })}
+${text(title, { x: cx, y: cy + 136, size: 24, font: "ss", fill: C.text, anchor: "middle", max: 280 })}
+${text(small, { x: cx, y: cy + 166, size: 17, font: "m", spacing: 1, fill: C.muted, anchor: "middle", max: 280 })}`;
+    })
+    .join("");
+  return doc(W, H, `Achievements: ${list.map(([b, t]) => `${b} ${t}`).join(", ")}`, card(W, H, C.gold, `${stars(24, 5, W, H)}${medals}`, { comet: false }));
+}
+
+function contactM() {
+  const [lead, sub] = cfg.contact;
+  const a = wrap(lead, 34, "d", 520), b = wrap(sub, 23, "s", 520);
+  const H = 70 + (a.length - 1) * 44 + 30 + b.length * 34 + 30;
+  return doc(600, H, `${lead} ${sub}`, card(600, H, C.red, `
+${a.map((l, i) => text(l, { x: 300, y: 70 + i * 44, size: 34, font: "d", fill: C.text, anchor: "middle" })).join("")}
+${b.map((l, i) => text(l, { x: 300, y: 70 + (a.length - 1) * 44 + 48 + i * 34, size: 23, font: "s", fill: C.soft, anchor: "middle" })).join("")}`, { comet: false }));
+}
+
+function footerM() {
+  const W = 600, H = 330, wall = 270;
+  let tiles = "";
+  for (let x = 0; x < W; x += 20) tiles += `<path d="M${x} ${wall} a10 7 0 0 1 20 0 Z"/>`;
+  const lines = wrap(cfg.footer.replace(/\s{2,}/g, " "), 22, "s", 520);
+  return doc(W, H, `Thanks for visiting — ${cfg.footer}`, `
+<defs><clipPath id="fr"><rect width="${W}" height="${H}" rx="28"/></clipPath><linearGradient id="fsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#050818"/><stop offset="1" stop-color="#1B1650"/></linearGradient></defs>
+<g clip-path="url(#fr)">
+  <rect width="${W}" height="${H}" fill="url(#fsky)"/>
+  ${stars(36, 13, W, 250)}
+  <circle cx="70" cy="62" r="28" fill="#FFE7A8"/><circle cx="84" cy="54" r="25" fill="#07091F"/>
+  ${text("Thanks for visiting", { x: 300, y: 104, size: 40, font: "d", fill: C.text, anchor: "middle" })}
+  ${lines.map((l, i) => text(l, { x: 300, y: 146 + i * 32, size: 22, font: "s", fill: C.soft, anchor: "middle" })).join("")}
+  ${text(`© ${new Date().getFullYear()}`, { x: 300, y: 146 + lines.length * 32 + 12, size: 15, font: "m", spacing: 2, fill: C.dim, anchor: "middle" })}
+  <g fill="#0B0E2A">${tiles}</g>
+  <rect y="${wall}" width="${W}" height="12" fill="#1D2250"/>
+  <rect y="${wall + 12}" width="${W}" height="${H - wall - 12}" fill="#E9DFC8" fill-opacity=".92"/>
+  <g class="runx"><g class="hop"><g transform="scale(-.5 .5)">${ninja()}</g></g></g>
+</g>`,
+    `.runx{animation:runx 8s linear infinite}.hop{animation:hop .9s ease-in-out infinite}
+@keyframes runx{from{transform:translate(-80px,242px)}to{transform:translate(680px,242px)}}
+@keyframes hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}`);
+}
+
+// ── pairs of cards: side by side on desktop, stacked on phones ────────────────
+const pair = (title, a, b) => doc(1224, 360, title, `${a}<g transform="translate(624 0)">${b}</g>`);
+const stackPair = (title, a, aH, b, bH) => doc(600, aH + 24 + bH + 24, title, `${a}<g transform="translate(0 ${aH + 24})">${b}</g>`);
+
+function overviewM(s, id) {
+  const W = 600, H = 640, cx = 300, cy = 220, r = 116, circ = 2 * Math.PI * r;
+  const p = s.totalDays ? s.activeDays / s.totalDays : 0;
+  const rows = [["COMMITS", fmt(s.commits)], ["ACTIVE DAYS", fmt(s.activeDays)], ["PUBLIC REPOS", fmt(s.repos)], ["BEST DAY", fmt(s.bestDay)], ["CURRENT STREAK", `${s.current} d`], ["LONGEST STREAK", `${s.longest} d`]]
+    .map(([l, v], i) => {
+      const x = 32 + (i % 2) * 284, y = 440 + Math.floor(i / 2) * 60;
+      return `${text(l, { x, y, size: 15, font: "m", spacing: 1.5, fill: C.muted })}${text(v, { x: x + 252, y: y + 1, size: 26, font: "d", fill: C.text, anchor: "end" })}<line x1="${x}" y1="${y + 16}" x2="${x + 252}" y2="${y + 16}" stroke="#fff" stroke-opacity=".06"/>`;
+    })
+    .join("");
+  return card(W, H, C.red, `
+<defs><linearGradient id="${id}ring" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${C.blue}"/><stop offset="1" stop-color="${C.red}"/></linearGradient></defs>
+<rect x="32" y="38" width="14" height="14" rx="3" fill="${C.red}"/>${text("GITHUB OVERVIEW", { x: 56, y: 52, size: 17, font: "m", spacing: 2.5, fill: C.muted })}
+${text("LAST 12 MONTHS", { x: W - 32, y: 52, size: 14, font: "m", spacing: 2, fill: C.dim, anchor: "end" })}
+<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#fff" stroke-opacity=".07" stroke-width="20"/>
+<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="url(#${id}ring)" stroke-width="20" stroke-linecap="round" transform="rotate(-90 ${cx} ${cy})" stroke-dasharray="${circ.toFixed(1)}" stroke-dashoffset="${(circ * (1 - Math.min(1, p))).toFixed(1)}"/>
+${text(fmt(s.total), { x: cx, y: cy + 16, size: 62, font: "d", fill: C.text, anchor: "middle" })}
+${text("CONTRIBUTIONS", { x: cx, y: cy + 50, size: 15, font: "m", spacing: 2, fill: C.muted, anchor: "middle" })}
+${text(`Active on ${fmt(s.activeDays)} of the last ${fmt(s.totalDays)} days`, { x: cx, y: cy + r + 56, size: 22, font: "sm", fill: C.soft, anchor: "middle" })}
+${rows}`, { id, comet: false });
+}
+
+function languagesM(s, id) {
+  const W = 600, top = s.languages.slice(0, 6), H = 110 + top.length * 70 + 20;
+  const rows = top
+    .map((l, i) => {
+      const y = 116 + i * 70, w = ((W - 64) * l.pct) / 100;
+      return `${text(l.name, { x: 32, y, size: 23, font: "ss", fill: C.text })}${text(`${l.pct.toFixed(1)}%`, { x: W - 32, y, size: 19, font: "m", fill: C.muted, anchor: "end" })}
+<rect x="32" y="${y + 14}" width="${W - 64}" height="12" rx="6" fill="#fff" fill-opacity=".07"/><rect x="32" y="${y + 14}" width="${Math.max(w, 6).toFixed(1)}" height="12" rx="6" fill="${l.color}"/>`;
+    })
+    .join("");
+  return [card(W, H, C.blue, `
+<rect x="32" y="38" width="14" height="14" rx="3" fill="${C.red}"/>${text("TOP LANGUAGES", { x: 56, y: 52, size: 17, font: "m", spacing: 2.5, fill: C.muted })}
+${text("PUBLIC REPOS", { x: W - 32, y: 52, size: 14, font: "m", spacing: 2, fill: C.dim, anchor: "end" })}
+${rows}`, { id, comet: false }), H];
 }
 
 // ── stats from GitHub ─────────────────────────────────────────────────────────
@@ -708,16 +980,16 @@ async function fetchStats(login) {
     reviews: cc.totalPullRequestReviewContributions,
     repos: repos.length,
     stars: repos.reduce((a, r) => a + r.stargazerCount, 0),
-    activeDays: days.filter((d) => d.contributionCount > 0).length,
+    activeDays: days.slice(-365).filter((d) => d.contributionCount > 0).length,
     bestDay: Math.max(0, ...days.map((d) => d.contributionCount)),
-    totalDays: days.length,
+    totalDays: Math.min(365, days.length),
     current, longest, weeks, languages,
   };
 }
 
 const stamp = () => `updated ${new Date().toISOString().slice(0, 10)}`;
 
-function overview(s) {
+function overview(s, id = "c") {
   const W = 600, H = 340, cx = 132, cy = 184, r = 78, circ = 2 * Math.PI * r;
   const p = s.totalDays ? s.activeDays / s.totalDays : 0;
   // Always-meaningful rows first; the rest only once they are non-zero.
@@ -736,20 +1008,20 @@ ${text(v, { x: 572, y: y + 1, size: 18, font: "d", fill: C.text, anchor: "end" }
 <line x1="262" y1="${y + 10}" x2="572" y2="${y + 10}" stroke="#fff" stroke-opacity=".06"/></g>`;
     })
     .join("");
-  return doc(W, H, `GitHub overview: ${s.total} contributions in the last 12 months, active on ${s.activeDays} days`, card(W, H, C.red, `
-<defs><linearGradient id="ring" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${C.blue}"/><stop offset="1" stop-color="${C.red}"/></linearGradient></defs>
+  return card(W, H, C.red, `
+<defs><linearGradient id="${id}ring" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${C.blue}"/><stop offset="1" stop-color="${C.red}"/></linearGradient></defs>
 ${label(28, 44, "GITHUB OVERVIEW")}
 ${text("LAST 12 MONTHS", { x: 572, y: 44, size: 10.5, font: "m", spacing: 2, fill: C.dim, anchor: "end" })}
 <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#fff" stroke-opacity=".07" stroke-width="14"/>
-<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="url(#ring)" stroke-width="14" stroke-linecap="round" transform="rotate(-90 ${cx} ${cy})" stroke-dasharray="${circ.toFixed(1)}" stroke-dashoffset="${circ.toFixed(1)}"><animate attributeName="stroke-dashoffset" from="${circ.toFixed(1)}" to="${(circ * (1 - Math.min(1, p))).toFixed(1)}" dur="1.6s" begin=".3s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".4 0 .2 1"/></circle>
+<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="url(#${id}ring)" stroke-width="14" stroke-linecap="round" transform="rotate(-90 ${cx} ${cy})" stroke-dasharray="${circ.toFixed(1)}" stroke-dashoffset="${circ.toFixed(1)}"><animate attributeName="stroke-dashoffset" from="${circ.toFixed(1)}" to="${(circ * (1 - Math.min(1, p))).toFixed(1)}" dur="1.6s" begin=".3s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".4 0 .2 1"/></circle>
 ${text(fmt(s.total), { x: cx, y: cy + 10, size: 40, font: "d", fill: C.text, anchor: "middle" })}
 ${text("CONTRIBUTIONS", { x: cx, y: cy + 32, size: 9.5, font: "m", spacing: 2, fill: C.muted, anchor: "middle" })}
-${text(`Active on ${fmt(s.activeDays)} of ${fmt(s.totalDays)} days`, { x: cx, y: cy + r + 44, size: 14, font: "sm", fill: C.soft, anchor: "middle" })}
+${text(`Active on ${fmt(s.activeDays)} of the last ${fmt(s.totalDays)} days`, { x: cx, y: cy + r + 44, size: 14, font: "sm", fill: C.soft, anchor: "middle" })}
 ${rows}
-${text(stamp(), { x: 572, y: H - 16, size: 9.5, font: "m", fill: C.dim, anchor: "end" })}`));
+${text(stamp(), { x: 572, y: H - 16, size: 9.5, font: "m", fill: C.dim, anchor: "end" })}`, { id });
 }
 
-function languages(s) {
+function languages(s, id = "c") {
   const W = 600, H = 340, top = s.languages.slice(0, 6);
   const rows = top
     .map((l, i) => {
@@ -760,19 +1032,22 @@ ${text(`${l.pct.toFixed(1)}%`, { x: 572, y, size: 12.5, font: "m", fill: C.muted
 <rect x="28" y="${y + 9}" width="0" height="8" rx="4" fill="${l.color}"><animate attributeName="width" from="0" to="${Math.max(w, 4).toFixed(1)}" dur="1.1s" begin="${(0.2 + i * 0.12).toFixed(2)}s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".4 0 .2 1"/></rect>`;
     })
     .join("");
-  return doc(W, H, `Top languages: ${top.map((l) => `${l.name} ${l.pct.toFixed(1)}%`).join(", ")}`, card(W, H, C.blue, `
+  return card(W, H, C.blue, `
 ${label(28, 44, "TOP LANGUAGES")}
 ${text("BY BYTES · PUBLIC REPOS", { x: 572, y: 44, size: 10.5, font: "m", spacing: 2, fill: C.dim, anchor: "end" })}
 ${rows || text("No public code yet.", { x: 300, y: 180, size: 16, font: "s", fill: C.muted, anchor: "middle" })}
 ${text(`${s.languages.length} languages across ${s.repos} public repos`, { x: 28, y: H - 16, size: 9.5, font: "m", fill: C.dim })}
-${text(stamp(), { x: 572, y: H - 16, size: 9.5, font: "m", fill: C.dim, anchor: "end" })}`));
+${text(stamp(), { x: 572, y: H - 16, size: 9.5, font: "m", fill: C.dim, anchor: "end" })}`, { id });
 }
 
 /** The last year of contributions as a skyline: a building per week, a window per day. */
-function skyline(s) {
-  const W = 1200, H = 330, ground = 282, x0 = 28, x1 = 1172;
-  const weeks = s.weeks, slot = (x1 - x0) / weeks.length, bw = Math.max(6, slot - 4);
+function skyline(s, mobile = false) {
+  const W = mobile ? 600 : 1200, H = mobile ? 470 : 330, ground = H - 48, x0 = 28, x1 = W - 28;
+  const weeks = mobile ? s.weeks.slice(-26) : s.weeks;
+  const slot = (x1 - x0) / weeks.length, bw = Math.max(6, slot - 4);
+  const [hBase, hRange, wh, wStep] = mobile ? [120, 120, 9, 14] : [88, 96, 6, 10];
   const totals = weeks.map((w) => w.reduce((a, d) => a + d.contributionCount, 0));
+  const shown = totals.reduce((a, b) => a + b, 0);
   const max = Math.max(1, ...totals);
   const LIT = { NONE: "#1A2150", FIRST_QUARTILE: "#7A5C1E", SECOND_QUARTILE: "#B8862B", THIRD_QUARTILE: "#F2B63D", FOURTH_QUARTILE: "#FFE08A" };
   const flicker = rng(17), jitter = rng(41);
@@ -782,7 +1057,7 @@ function skyline(s) {
   weeks.forEach((days, i) => {
     const x = x0 + i * slot + (slot - bw) / 2;
     // A quiet week is still a building; contributions make it taller.
-    const h = 88 + Math.round(jitter() * 22) + Math.round(96 * Math.sqrt(totals[i] / max));
+    const h = hBase + Math.round(jitter() * 22) + Math.round(hRange * Math.sqrt(totals[i] / max));
     const top = ground - h;
     tops.push([x + bw / 2, top]);
     buildings += `<rect x="${x.toFixed(1)}" y="${top}" width="${bw.toFixed(1)}" height="${h}" fill="${i % 2 ? "#0E1336" : "#111846"}"/>
@@ -790,71 +1065,98 @@ function skyline(s) {
     days.forEach((d, j) => {
       const lit = d.contributionLevel !== "NONE";
       const cls = lit && flicker() < 0.12 ? ` class="flk" style="animation-delay:-${(flicker() * 2).toFixed(1)}s"` : "";
-      windows += `<rect${cls} x="${(x + 3).toFixed(1)}" y="${top + 12 + j * 10}" width="${(bw - 6).toFixed(1)}" height="6" rx="1" fill="${LIT[d.contributionLevel] ?? LIT.NONE}"><title>${d.date}: ${d.contributionCount}</title></rect>`;
+      windows += `<rect${cls} x="${(x + 3).toFixed(1)}" y="${top + 12 + j * wStep}" width="${(bw - 6).toFixed(1)}" height="${wh}" rx="1" fill="${LIT[d.contributionLevel] ?? LIT.NONE}"><title>${d.date}: ${d.contributionCount}</title></rect>`;
     });
     const month = new Date(`${days[0].date}T00:00:00Z`).getUTCMonth();
     if (month !== lastMonth) {
       const name = new Date(Date.UTC(2000, month, 1)).toLocaleString("en-US", { month: "short", timeZone: "UTC" }).toUpperCase();
-      if (lastMonth !== -1) months += text(name, { x, y: ground + 24, size: 10, font: "m", spacing: 1, fill: C.dim });
+      if (lastMonth !== -1) months += text(name, { x, y: ground + (mobile ? 30 : 24), size: mobile ? 15 : 10, font: "m", spacing: 1, fill: C.dim });
       lastMonth = month;
     }
   });
 
-  const hop = tops.filter((_, i) => i % 3 === 0 || i === tops.length - 1).map(([x, y]) => [x, y - 30]);
+  const every = mobile ? 2 : 3;
+  const hop = tops.filter((_, i) => i % every === 0 || i === tops.length - 1).map(([x, y]) => [x, y - (mobile ? 36 : 30)]);
   let path = `M${hop[0][0].toFixed(1)} ${hop[0][1]}`;
   for (let i = 1; i < hop.length; i++) {
     const [ax, ay] = hop[i - 1], [bx, by] = hop[i];
     path += ` Q${((ax + bx) / 2).toFixed(1)} ${Math.min(ay, by) - 36} ${bx.toFixed(1)} ${by}`;
   }
-  const dur = (hop.length * 0.5).toFixed(1);
-  const caption = "CONTRIBUTIONS · LAST 12 MONTHS";
-  const capW = measure(caption, 10.5, "m", 1.5);
-
-  return doc(W, H, `Contribution skyline: ${s.total} contributions in the last 12 months, one building per week`, card(W, H, C.gold, `
-${stars(60, 29, W, 170)}
-<circle cx="1110" cy="70" r="60" fill="#FFD98A" fill-opacity=".08"/><circle cx="1110" cy="70" r="26" fill="#FFE7A8"/>
-${label(28, 42, "CONTRIBUTION SKYLINE")}
+  const dur = (hop.length * (mobile ? 0.6 : 0.5)).toFixed(1);
+  const caption = mobile ? "CONTRIBUTIONS · LAST 6 MONTHS" : "CONTRIBUTIONS · LAST 12 MONTHS";
+  const total = mobile ? shown : s.total;
+  const head = mobile
+    ? `${label(28, 46, "CONTRIBUTION SKYLINE")}
+${text(fmt(total), { x: 28, y: 100, size: 40, font: "d", fill: C.gold })}
+${text(caption, { x: 36 + measure(fmt(total), 40, "d"), y: 98, size: 15, font: "m", spacing: 1.5, fill: C.muted })}`
+    : `${label(28, 42, "CONTRIBUTION SKYLINE")}
 ${text("each building is a week · each lit window is a day with contributions", { x: 28, y: 64, size: 10.5, font: "m", fill: C.dim })}
-${text(fmt(s.total), { x: 1060 - capW - 8, y: 42, size: 18, font: "d", fill: C.gold, anchor: "end" })}
-${text(caption, { x: 1060, y: 42, size: 10.5, font: "m", spacing: 1.5, fill: C.muted, anchor: "end" })}
+${text(fmt(total), { x: 1060 - measure(caption, 10.5, "m", 1.5) - 8, y: 42, size: 18, font: "d", fill: C.gold, anchor: "end" })}
+${text(caption, { x: 1060, y: 42, size: 10.5, font: "m", spacing: 1.5, fill: C.muted, anchor: "end" })}`;
+  const [mx, my, mr] = mobile ? [W - 70, 64, 30] : [1110, 70, 26];
+
+  return doc(W, H, `Contribution skyline: ${total} contributions in the ${mobile ? "last 6" : "last 12"} months, one building per week`, card(W, H, C.gold, `
+${stars(mobile ? 40 : 60, 29, W, 170)}
+<circle cx="${mx}" cy="${my}" r="${mr * 2.3}" fill="#FFD98A" fill-opacity=".08"/><circle cx="${mx}" cy="${my}" r="${mr}" fill="#FFE7A8"/>
+${head}
 ${buildings}
 ${windows}
 <rect y="${ground}" width="${W}" height="${H - ground}" fill="#05071A"/>
 <line x1="0" y1="${ground}" x2="${W}" y2="${ground}" stroke="${C.red}" stroke-opacity=".35"/>
 ${months}
-<g><animateMotion dur="${dur}s" repeatCount="indefinite" path="${path}"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.03;.97;1" dur="${dur}s" repeatCount="indefinite"/><g transform="scale(-.36 .36)">${ninja("#04061A", "#FFE08A")}</g></g>
-${text(stamp(), { x: W - 28, y: H - 14, size: 9.5, font: "m", fill: C.dim, anchor: "end" })}`, { comet: false }));
+<g><animateMotion dur="${dur}s" repeatCount="indefinite" path="${path}"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.03;.97;1" dur="${dur}s" repeatCount="indefinite"/><g transform="scale(${mobile ? -0.46 : -0.36} ${mobile ? 0.46 : 0.36})">${ninja("#04061A", "#FFE08A")}</g></g>
+${mobile ? "" : text(stamp(), { x: W - 28, y: H - 14, size: 9.5, font: "m", fill: C.dim, anchor: "end" })}`, { comet: false }));
 }
 
 // ── build ─────────────────────────────────────────────────────────────────────
 console.log("Building static images");
 await write("banner.svg", banner());
+await write("m/banner.svg", bannerM());
 await write("divider.svg", divider());
 await write("about.svg", about());
+await write("m/about.svg", aboutM());
 await write("achievements.svg", achievements());
+await write("m/achievements.svg", achievementsM());
 await write("footer.svg", footer());
+await write("m/footer.svg", footerM());
 let n = 0;
 for (const [key, title] of Object.entries(cfg.headers)) {
   n++;
   await write(`headers/${key}-dark.svg`, header(title, n, "dark"));
   await write(`headers/${key}-light.svg`, header(title, n, "light"));
+  await write(`m/headers/${key}.svg`, headerM(title, n));
 }
-for (const m of cfg.projects) await write(`projects/${m.file}.svg`, project(m));
-for (const w of cfg.work) await write(`work/${w.file}.svg`, work(w));
+const P = cfg.projects;
+for (let i = 0; i < P.length; i += 2) {
+  const [a, b] = [P[i], P[i + 1]], row = i / 2 + 1, title = [a, b].filter(Boolean).map((m) => `${m.title} — ${m.summary}`).join(" ");
+  await write(`projects/row${row}.svg`, pair(title, project(a, "a"), b ? project(b, "b") : ""));
+  await write(`m/projects/row${row}.svg`, b ? stackPair(title, projectM(a, "a"), 560, projectM(b, "b"), 560) : doc(600, 560, title, projectM(a, "a")));
+}
+for (const w of cfg.work) {
+  await write(`work/${w.file}.svg`, work(w));
+  await write(`m/work/${w.file}.svg`, workM(w));
+}
 for (const b of cfg.buttons) await write(`buttons/${b.file}.svg`, button(b));
 for (const theme of ["dark", "light"]) {
   await write(`intro-${theme}.svg`, intro(theme));
   await write(`contact-${theme}.svg`, contact(theme));
 }
+await write("m/intro.svg", introM());
+await write("m/contact.svg", contactM());
 await write("stack.svg", stack());
+await write("m/stack.svg", stackM());
 await write("now.svg", now());
+await write("m/now.svg", nowM());
 
 if (!TOKEN) {
   console.log("No GITHUB_TOKEN — skipping stats (overview, languages, skyline)");
 } else {
   console.log(`Reading GitHub stats for ${cfg.login}`);
   const s = await fetchStats(cfg.login);
-  await write("stats/overview.svg", overview(s));
-  await write("stats/languages.svg", languages(s));
+  const title = `GitHub overview: ${s.total} contributions in the last 12 months, active on ${s.activeDays} days. Top languages: ${s.languages.slice(0, 6).map((l) => `${l.name} ${l.pct.toFixed(1)}%`).join(", ")}`;
+  await write("stats/overview.svg", pair(title, overview(s, "a"), languages(s, "b")));
+  const [langM, langH] = languagesM(s, "b");
+  await write("m/stats/overview.svg", stackPair(title, overviewM(s, "a"), 640, langM, langH));
   await write("stats/skyline.svg", skyline(s));
+  await write("m/stats/skyline.svg", skyline(s, true));
 }

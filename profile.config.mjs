@@ -100,7 +100,7 @@ export default {
   work: [
     { file: "olearn", kicker: "E-LEARNING PLATFORM  ·  PROJECT LEAD", title: "oLearn", desc: "Led a 4-member team through a 14-day agile sprint.", accent: "#8FB2FF" },
     { file: "riven-site", kicker: "COMPANY WEBSITE", title: "Riven website", desc: "Next.js 16, TypeScript, Tailwind, Framer Motion and three.js.", accent: "#FF6B7A" },
-    { file: "8086", kicker: "EMULATOR  ·  PYTHON", title: "8086 trainer UI", desc: "An emulator interface for the 8086 microprocessor trainer kit.", accent: "#B69CFF" },
+    { file: "8086", kicker: "EMULATOR  ·  PYTHON", title: "8086 trainer UI", desc: "Full-stack 8086 assembly emulator with a Python backend.", accent: "#B69CFF" },
     { file: "lincys", kicker: "CLIENT WEBSITE  ·  LIVE", title: "Lincy’s Makeover Artistry", desc: "Website for a certified celebrity makeup artist in Chennai.", accent: "#FFC857" },
   ],
 
