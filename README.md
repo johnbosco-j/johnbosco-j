@@ -2,14 +2,13 @@
   <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/banner.svg" width="100%" alt="Johnbosco J Elanjikal — full-stack developer, founder of Riven, B.E. CSE at LICET">
 </p>
 
-<p align="center">
-  I'm a third-year Computer Science student at LICET in Chennai, and I run <b>Riven</b>, the technology company I founded in 2026.
-  I like problems where software meets the real world, and I build them end to end: database, API, interface, and the part that runs on your device.
-</p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/intro-dark.svg">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/intro-light.svg" width="100%" alt="I'm a third-year Computer Science student at LICET in Chennai, and I run Riven, the technology company I founded in 2026. I like problems where software meets the real world, and I build them end to end: database, API, interface, and the part that runs on your device.">
+</picture>
 
 <p align="center">
-  <a href="mailto:hello@rivendevs.in"><img src="https://img.shields.io/badge/Email-hello%40rivendevs.in-E63946?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0A0E27" alt="Email hello@rivendevs.in"></a>
-  <!-- <a href="https://www.linkedin.com/in/YOUR-HANDLE"><img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=0A0E27" alt="LinkedIn"></a> -->
+  <a href="mailto:hello@rivendevs.in"><img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/buttons/email.svg" width="230" alt="Email hello@rivendevs.in"></a>
 </p>
 
 <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/divider.svg" width="100%" alt="">
@@ -20,7 +19,7 @@
 </picture>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/about.svg" width="100%" alt="Johnbosco J Elanjikal. Based in Chennai, India. B.E. Computer Science and Engineering at LICET, 3rd year. Founder of Riven and full-stack developer. Focus: web platforms, APIs and on-device computer vision. Stack: TypeScript, React, Next.js, Python, FastAPI, Supabase. Interests: chess and hackathons. Speaks English, Tamil and Malayalam.">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/about.svg" width="100%" alt="Johnbosco J Elanjikal. Based in Chennai, India. B.E. Computer Science and Engineering at LICET, 3rd year. Founder of Riven and full-stack developer. Focus: web platforms, APIs and on-device computer vision. Stack: TypeScript, React, Next.js, Python, FastAPI, Supabase. Speaks English, Tamil and Malayalam.">
 </p>
 
 <picture>
@@ -36,11 +35,10 @@
 </p>
 
 <p align="center">
-  <b>Other work:</b>
-  <a href="https://github.com/johnbosco-j/oLearn">oLearn</a> <sub>(led a 4-member team through a 14-day agile sprint)</sub> ·
-  <a href="https://github.com/johnbosco-j/rivendevs-site">Riven website</a> <sub>(Next.js 16, Framer Motion, three.js)</sub> ·
-  <a href="https://github.com/johnbosco-j/8086-trainer-emulator-ui">8086 trainer UI</a> <sub>(Python)</sub> ·
-  <a href="https://lincysmakeoverartistry.in">Lincy's Makeover Artistry</a> <sub>(client website)</sub>
+  <a href="https://github.com/johnbosco-j/oLearn"><img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/work/olearn.svg" width="49%" alt="oLearn — e-learning platform; led a 4-member team through a 14-day agile sprint."></a>
+  <a href="https://github.com/johnbosco-j/rivendevs-site"><img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/work/riven-site.svg" width="49%" alt="Riven website — Next.js 16, TypeScript, Tailwind, Framer Motion and three.js."></a>
+  <a href="https://github.com/johnbosco-j/8086-trainer-emulator-ui"><img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/work/8086.svg" width="49%" alt="8086 trainer UI — an emulator interface for the 8086 microprocessor trainer kit."></a>
+  <a href="https://lincysmakeoverartistry.in"><img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/work/lincys.svg" width="49%" alt="Lincy's Makeover Artistry — website for a certified celebrity makeup artist in Chennai."></a>
 </p>
 
 <picture>
@@ -48,55 +46,19 @@
   <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/headers/stack-light.svg" width="100%" alt="Tech stack">
 </picture>
 
-<table align="center">
-  <tr>
-    <td align="right"><b>Languages</b></td>
-    <td>
-      <img src="https://skillicons.dev/icons?i=ts,js,py,c,java&theme=dark" height="42" alt="TypeScript, JavaScript, Python, C, Java">
-      <img src="https://img.shields.io/badge/SQL-0A0E27?style=for-the-badge&logo=postgresql&logoColor=8FB2FF" alt="SQL">
-      <img src="https://img.shields.io/badge/8086_ASM-0A0E27?style=for-the-badge&logo=intel&logoColor=FF6B7A" alt="8086 Assembly">
-    </td>
-  </tr>
-  <tr>
-    <td align="right"><b>Frameworks &amp; web</b></td>
-    <td><img src="https://skillicons.dev/icons?i=react,nextjs,vite,tailwind,threejs,nodejs,fastapi,electron,wasm&theme=dark" height="42" alt="React, Next.js, Vite, Tailwind CSS, three.js, Node.js, FastAPI, Electron, WebAssembly"></td>
-  </tr>
-  <tr>
-    <td align="right"><b>Data &amp; cloud</b></td>
-    <td><img src="https://skillicons.dev/icons?i=supabase,postgres,firebase,vercel&theme=dark" height="42" alt="Supabase, Postgres, Firebase, Vercel"></td>
-  </tr>
-  <tr>
-    <td align="right"><b>AI &amp; vision</b></td>
-    <td>
-      <img src="https://skillicons.dev/icons?i=opencv&theme=dark" height="42" alt="OpenCV">
-      <img src="https://img.shields.io/badge/MediaPipe-0A0E27?style=for-the-badge&logo=google&logoColor=3DDC97" alt="MediaPipe">
-      <img src="https://img.shields.io/badge/Claude_API-0A0E27?style=for-the-badge&logo=anthropic&logoColor=FFC857" alt="Claude API">
-    </td>
-  </tr>
-  <tr>
-    <td align="right"><b>Tools</b></td>
-    <td><img src="https://skillicons.dev/icons?i=git,github,githubactions,linux,ubuntu,vscode&theme=dark" height="42" alt="Git, GitHub, GitHub Actions, Linux, Ubuntu, VS Code"></td>
-  </tr>
-</table>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/stack.svg" width="100%" alt="Languages: TypeScript, JavaScript, Python, C, Java, SQL, 8086 assembly. Frameworks: React, Next.js, Vite, Tailwind CSS, three.js, Node.js, FastAPI, Electron, WebAssembly. Data and cloud: Supabase, PostgreSQL, Firebase, Vercel, Resend. AI and vision: OpenCV, MediaPipe, Claude API. Tools: Git, GitHub, GitHub Actions, Linux, Ubuntu.">
+</p>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/headers/now-dark.svg">
   <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/headers/now-light.svg" width="100%" alt="Currently">
 </picture>
 
-<table align="center">
-  <tr>
-    <td width="42%" align="center" valign="middle">
-      <img src="https://media.tenor.com/qZ3gyNdFizcAAAAC/hattori-ninja-hattori.gif" width="100%" alt="Hattori, Shinzo and Shishimaru walking down a street">
-    </td>
-    <td width="58%" valign="middle">
-      <p><b>Running Riven</b> — the company site, client websites and AI work.</p>
-      <p><b>Building the LICET CSE ERP</b> — attendance, marks and leave for the department, live at <a href="https://cseerp.vercel.app">cseerp.vercel.app</a>.</p>
-      <p><b>Studying</b> — 3rd year, B.E. Computer Science at LICET, Chennai.</p>
-      <p><sub>Updated September 2026</sub></p>
-    </td>
-  </tr>
-</table>
+<p align="center">
+  <img src="https://media.tenor.com/qZ3gyNdFizcAAAAC/hattori-ninja-hattori.gif" width="38%" alt="Hattori, Shinzo and Shishimaru walking down a street — original series animation">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/now.svg" width="60%" alt="Running Riven: the company site, client websites and AI work. Building the LICET CSE ERP: attendance, marks and leave for the department, at cseerp.vercel.app. Studying B.E. Computer Science, 3rd year at LICET, Chennai.">
+</p>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/headers/achievements-dark.svg">
@@ -118,15 +80,6 @@
   <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/stats/skyline.svg" width="99%" alt="Contribution skyline: the last 12 months of contributions as a night skyline, one building per week and one lit window per active day">
 </p>
 
-<details>
-  <summary><b>Contribution snake</b></summary>
-  <br>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/output/snake-dark.svg">
-    <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/output/snake-light.svg" width="100%" alt="Contribution snake">
-  </picture>
-</details>
-
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/headers/contact-dark.svg">
   <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/headers/contact-light.svg" width="100%" alt="Contact">
@@ -136,13 +89,13 @@
   <img src="https://i.pinimg.com/originals/f6/4b/b4/f64bb4abcf913d4d6ebf3aab52a5760f.png" width="170" alt="Ninja Hattori running with a red bundle — original series artwork">
 </p>
 
-<p align="center">
-  Open to collaborations, client projects and hackathon teams.<br>
-  Riven builds websites and AI systems for people who need them, at a minimal cost.
-</p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/contact-dark.svg">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/contact-light.svg" width="100%" alt="Open to collaborations, client projects and hackathon teams. Riven builds websites and AI systems for people who need them, at a minimal cost.">
+</picture>
 
 <p align="center">
-  <a href="mailto:hello@rivendevs.in"><img src="https://img.shields.io/badge/Email-hello%40rivendevs.in-E63946?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0A0E27" alt="Email hello@rivendevs.in"></a>
+  <a href="mailto:hello@rivendevs.in"><img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/buttons/email.svg" width="230" alt="Email hello@rivendevs.in"></a>
 </p>
 
 <p align="center">

@@ -86,6 +86,43 @@ export default {
     ["DE", "German I", "NPTEL"],
   ],
 
+  // Intro under the banner: [text, bold?] runs
+  intro: [
+    ["I’m a third-year Computer Science student at LICET in Chennai, and I run "],
+    ["Riven", true],
+    [", the technology company I founded in 2026. I like problems where software meets the real world, and I build them end to end: database, API, interface, and the part that runs on your device."],
+  ],
+
+  // Linked buttons: icon is "mail" or a simple-icons slug
+  buttons: [{ file: "email", label: "hello@rivendevs.in", icon: "mail" }],
+
+  // Smaller cards under the projects (links are in README.md)
+  work: [
+    { file: "olearn", kicker: "E-LEARNING PLATFORM  ·  PROJECT LEAD", title: "oLearn", desc: "Led a 4-member team through a 14-day agile sprint.", accent: "#8FB2FF" },
+    { file: "riven-site", kicker: "COMPANY WEBSITE", title: "Riven website", desc: "Next.js 16, TypeScript, Tailwind, Framer Motion and three.js.", accent: "#FF6B7A" },
+    { file: "8086", kicker: "EMULATOR  ·  PYTHON", title: "8086 trainer UI", desc: "An emulator interface for the 8086 microprocessor trainer kit.", accent: "#B69CFF" },
+    { file: "lincys", kicker: "CLIENT WEBSITE  ·  LIVE", title: "Lincy’s Makeover Artistry", desc: "Website for a certified celebrity makeup artist in Chennai.", accent: "#FFC857" },
+  ],
+
+  // Tech stack rows: [label, [[simple-icons slug or "db", name], …]]
+  stack: [
+    ["LANGUAGES", [["typescript", "TypeScript"], ["javascript", "JavaScript"], ["python", "Python"], ["c", "C"], ["openjdk", "Java"], ["db", "SQL"], ["intel", "8086 ASM"]]],
+    ["FRAMEWORKS", [["react", "React"], ["nextdotjs", "Next.js"], ["vite", "Vite"], ["tailwindcss", "Tailwind CSS"], ["threedotjs", "three.js"], ["nodedotjs", "Node.js"], ["fastapi", "FastAPI"], ["electron", "Electron"], ["webassembly", "WebAssembly"]]],
+    ["DATA & CLOUD", [["supabase", "Supabase"], ["postgresql", "PostgreSQL"], ["firebase", "Firebase"], ["vercel", "Vercel"], ["resend", "Resend"]]],
+    ["AI & VISION", [["opencv", "OpenCV"], ["mediapipe", "MediaPipe"], ["claude", "Claude API"]]],
+    ["TOOLS", [["git", "Git"], ["github", "GitHub"], ["githubactions", "GitHub Actions"], ["linux", "Linux"], ["ubuntu", "Ubuntu"]]],
+  ],
+
+  // "Currently" card: [kicker, title, detail]
+  now: [
+    ["RUNNING", "Riven", "The company site, client websites and AI work."],
+    ["BUILDING", "LICET CSE ERP", "Attendance, marks and leave for the department  ·  cseerp.vercel.app"],
+    ["STUDYING", "B.E. Computer Science", "3rd year at LICET, Chennai."],
+  ],
+  nowUpdated: "UPDATED SEPTEMBER 2026",
+
+  contact: ["Open to collaborations, client projects and hackathon teams.", "Riven builds websites and AI systems for people who need them, at a minimal cost."],
+
   footer: "Johnbosco J Elanjikal  ·  Full-stack developer  ·  Chennai, India",
 
   // Languages to leave out of the Top languages card.

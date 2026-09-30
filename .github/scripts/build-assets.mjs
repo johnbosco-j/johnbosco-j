@@ -11,6 +11,7 @@ import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import opentype from "opentype.js";
+import * as SI from "simple-icons";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const cfg = (await import(pathToFileURL(join(ROOT, "profile.config.mjs")).href)).default;
@@ -499,6 +500,142 @@ function footer() {
 @keyframes hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}`);
 }
 
+// ── text blocks (transparent, one file per GitHub theme) ─────────────────────
+const THEME = {
+  dark: { fg: "#E6EDF3", muted: "#9198A1", strong: "#FFFFFF" },
+  light: { fg: "#1F2328", muted: "#59636E", strong: "#0A0E27" },
+};
+
+/** Centred paragraph from [text, bold?] runs; returns markup and line count. */
+function paragraph(parts, { x, y, size, lineH, maxW, fill, strong }) {
+  // Words are runs without whitespace between them, so "Riven," never splits.
+  const words = [];
+  let gap = false;
+  for (const [str, bold] of parts)
+    for (const tok of str.match(/\S+|\s+/g) ?? []) {
+      if (/^\s/.test(tok)) { gap = true; continue; }
+      const seg = { t: tok, font: bold ? "ss" : "s", fill: bold ? strong : fill };
+      if (!gap && words.length) words.at(-1).push(seg);
+      else words.push([seg]);
+      gap = false;
+    }
+  const space = measure(" ", size, "s");
+  const wordW = (w) => w.reduce((a, s) => a + measure(s.t, size, s.font), 0);
+  const lines = [[]];
+  let lineW = 0;
+  for (const w of words) {
+    const ww = wordW(w);
+    if (lines.at(-1).length && lineW + space + ww > maxW) (lines.push([]), (lineW = 0));
+    lineW += (lines.at(-1).length ? space : 0) + ww;
+    lines.at(-1).push(w);
+  }
+  const out = lines.map((line, i) => {
+    const total = line.reduce((a, w, j) => a + wordW(w) + (j ? space : 0), 0);
+    let cx = x - total / 2, svg = "";
+    line.forEach((w, j) => {
+      if (j) cx += space;
+      for (const s of w) (svg += text(s.t, { x: cx, y: y + i * lineH, size, font: s.font, fill: s.fill })), (cx += measure(s.t, size, s.font));
+    });
+    return svg;
+  });
+  return { svg: out.join(""), lines: lines.length };
+}
+
+function intro(theme) {
+  const t = THEME[theme], size = 22, lineH = 35;
+  const p = paragraph(cfg.intro, { x: 600, y: 34, size, lineH, maxW: 1060, fill: t.fg, strong: t.strong });
+  return doc(1200, 34 + (p.lines - 1) * lineH + 20, cfg.intro.map(([s]) => s).join(""), `<g class="fade">${p.svg}</g>`);
+}
+
+function contact(theme) {
+  const t = THEME[theme];
+  const [lead, sub] = cfg.contact;
+  return doc(1200, 104, `${lead} ${sub}`, `<g class="fade">
+${text(lead, { x: 600, y: 42, size: 30, font: "d", fill: t.strong, anchor: "middle", max: 1140 })}
+${text(sub, { x: 600, y: 84, size: 20, font: "s", fill: t.muted, anchor: "middle", max: 1140 })}</g>`);
+}
+
+// 24×24 icons that simple-icons doesn't have.
+const ICONS = {
+  mail: "M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm1 2.4V17h16V7.4l-8 5-8-5ZM5.6 7 12 11l6.4-4H5.6Z",
+  db: "M12 2c4.4 0 8 1.3 8 3v14c0 1.7-3.6 3-8 3s-8-1.3-8-3V5c0-1.7 3.6-3 8-3Zm6 5.4C16.5 8.2 14.4 8.6 12 8.6S7.5 8.2 6 7.4V11c.4.6 2.6 1.6 6 1.6s5.6-1 6-1.6V7.4Zm0 6.2c-1.5.8-3.6 1.2-6 1.2s-4.5-.4-6-1.2V19c.4.6 2.6 1.6 6 1.6s5.6-1 6-1.6v-5.4ZM12 3.9c-3.4 0-5.6 1-6 1.4.4.5 2.6 1.5 6 1.5s5.6-1 6-1.5c-.4-.4-2.6-1.4-6-1.4Z",
+};
+
+function icon(slug) {
+  if (ICONS[slug]) return { path: ICONS[slug], color: C.sky };
+  const si = SI[`si${slug[0].toUpperCase()}${slug.slice(1)}`];
+  if (!si) throw new Error(`simple-icons has no "${slug}"`);
+  const n = parseInt(si.hex, 16), lum = (0.299 * (n >> 16) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255;
+  return { path: si.path, color: lum < 0.3 ? C.text : `#${si.hex}` }; // near-black logos go white on the dark card
+}
+
+const glyph = (slug, x, y, size, fill) => {
+  const i = icon(slug);
+  return `<path d="${i.path}" transform="translate(${r2(x)} ${r2(y)}) scale(${r2(size / 24)})" fill="${fill ?? i.color}" fill-rule="evenodd"/>`;
+};
+
+function button(b) {
+  const W = 460, H = 76, labelW = measure(b.label, 24, "ss");
+  const x0 = (W - (28 + 14 + labelW)) / 2;
+  return doc(W, H, b.label, `
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F0475A"/><stop offset="1" stop-color="#C81D3A"/></linearGradient></defs>
+<rect width="${W}" height="${H}" rx="${H / 2}" fill="url(#bg)"/>
+<rect x="1" y="1" width="${W - 2}" height="${H - 2}" rx="${H / 2 - 1}" fill="none" stroke="#fff" stroke-opacity=".25"/>
+${glyph(b.icon, x0, H / 2 - 14, 28, "#fff")}
+${text(b.label, { x: x0 + 42, y: H / 2 + 8.5, size: 24, font: "ss", fill: "#fff" })}`);
+}
+
+// ── tech stack: rows of logo pills ────────────────────────────────────────────
+function stack() {
+  const W = 1200, x0 = 236, x1 = W - 36, pillH = 46, gap = 9, rowGap = 26;
+  let y = 40, body = "", row = 0;
+  for (const [name, items] of cfg.stack) {
+    let x = x0, top = y, pills = "";
+    items.forEach(([slug, label], i) => {
+      const w = 16 + 24 + 9 + measure(label, 17, "sm") + 18;
+      if (x + w > x1) (x = x0), (y += pillH + 12);
+      pills += `<g class="fade" style="animation-delay:${(0.08 * row + 0.04 * i).toFixed(2)}s"><rect x="${r2(x)}" y="${y}" width="${r2(w)}" height="${pillH}" rx="${pillH / 2}" fill="#fff" fill-opacity=".05" stroke="#fff" stroke-opacity=".12"/>
+${glyph(slug, x + 16, y + 11, 24)}${text(label, { x: x + 49, y: y + 29.5, size: 17, font: "sm", fill: C.text })}</g>`;
+      x += w + gap;
+    });
+    body += `${text(name, { x: 40, y: top + 28, size: 12.5, font: "m", spacing: 2.5, fill: C.muted })}${pills}`;
+    y += pillH + rowGap;
+    if (row < cfg.stack.length - 1) body += `<line x1="40" y1="${y - rowGap / 2}" x2="${x1}" y2="${y - rowGap / 2}" stroke="#fff" stroke-opacity=".06"/>`;
+    row++;
+  }
+  const H = y - rowGap + 40;
+  return doc(W, H, `Tech stack: ${cfg.stack.map(([n, list]) => `${n.toLowerCase()} ${list.map(([, l]) => l).join(", ")}`).join("; ")}`, card(W, H, C.blue, body, { comet: false }));
+}
+
+// ── "currently" card, sized to sit beside the 4:3 GIF ─────────────────────────
+function now() {
+  const W = 760, H = 361, dx = 50;
+  const rows = cfg.now
+    .map(([kicker, title, detail], i) => {
+      const y = 62 + i * 98, tint = [C.green, C.gold, C.sky][i % 3];
+      return `<g class="fade" style="animation-delay:${0.15 * i}s">
+<circle cx="${dx}" cy="${y - 5}" r="7" fill="${C.deep}" stroke="${tint}" stroke-width="3"/>
+${text(kicker, { x: dx + 28, y, size: 11.5, font: "m", spacing: 2.5, fill: tint })}
+${text(title, { x: dx + 28, y: y + 32, size: 25, font: "d", fill: C.text, max: W - dx - 60 })}
+${text(detail, { x: dx + 28, y: y + 58, size: 15.5, font: "s", fill: C.soft, max: W - dx - 60 })}</g>`;
+    })
+    .join("");
+  return doc(W, H, cfg.now.map(([k, t, d]) => `${k}: ${t} — ${d}`).join(". "), card(W, H, C.green, `
+<line x1="${dx}" y1="57" x2="${dx}" y2="${57 + (cfg.now.length - 1) * 98}" stroke="#fff" stroke-opacity=".12" stroke-width="2"/>
+${rows}
+${text(cfg.nowUpdated, { x: W - 28, y: H - 22, size: 10, font: "m", spacing: 2, fill: C.dim, anchor: "end" })}`, { comet: false }));
+}
+
+// ── smaller "other work" cards ────────────────────────────────────────────────
+function work(w) {
+  const W = 600, H = 150;
+  return doc(W, H, `${w.title} — ${w.desc}`, card(W, H, w.accent, `
+${text(w.kicker, { x: 28, y: 42, size: 11, font: "m", spacing: 1.5, fill: w.accent, max: 480 })}
+${text(w.title, { x: 28, y: 82, size: 28, font: "d", fill: C.text, max: 480 })}
+${text(w.desc, { x: 28, y: 116, size: 16, font: "s", fill: C.soft, max: W - 56 })}
+<g transform="translate(${W - 58} 24)"><circle cx="15" cy="15" r="15" fill="#fff" fill-opacity=".06" stroke="#fff" stroke-opacity=".14"/><path d="M10 20 L20 10 M12.5 10 H20 V17.5" fill="none" stroke="${w.accent}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>`, { comet: false }));
+}
+
 // ── stats from GitHub ─────────────────────────────────────────────────────────
 async function gql(query, variables) {
   const res = await fetch("https://api.github.com/graphql", {
@@ -703,6 +840,14 @@ for (const [key, title] of Object.entries(cfg.headers)) {
   await write(`headers/${key}-light.svg`, header(title, n, "light"));
 }
 for (const m of cfg.projects) await write(`projects/${m.file}.svg`, project(m));
+for (const w of cfg.work) await write(`work/${w.file}.svg`, work(w));
+for (const b of cfg.buttons) await write(`buttons/${b.file}.svg`, button(b));
+for (const theme of ["dark", "light"]) {
+  await write(`intro-${theme}.svg`, intro(theme));
+  await write(`contact-${theme}.svg`, contact(theme));
+}
+await write("stack.svg", stack());
+await write("now.svg", now());
 
 if (!TOKEN) {
   console.log("No GITHUB_TOKEN — skipping stats (overview, languages, skyline)");
