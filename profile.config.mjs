@@ -5,7 +5,7 @@
 export default {
   login: "johnbosco-j",
 
-  name: { first: "JOHNBOSCO", last: "J  ELANJIKAL", full: "Johnbosco J Elanjikal" },
+  name: { first: "JOHNBOSCO", last: "J ELANJIKAL", full: "Johnbosco J Elanjikal" },
   tag: "BUILDING AT RIVEN",
   role: "Full-stack developer  ·  Founder of Riven  ·  B.E. CSE, LICET",
   chips: ["TYPESCRIPT · PYTHON", "AI & COMPUTER VISION", "CHENNAI, INDIA"],

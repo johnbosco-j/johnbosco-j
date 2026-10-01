@@ -301,7 +301,7 @@ ${STAMP_CSS}`;
     <rect width="64" height="64" rx="11" fill="${C.seal}"/><rect x="5" y="5" width="54" height="54" rx="8" fill="none" stroke="#fff" stroke-opacity=".45"/>
     <text x="32" y="45" text-anchor="middle" font-family="${JP}" font-size="37" font-weight="700" fill="#FFF3EC">忍</text>
   </g></g>
-  ${text(last, { x: 72, y: 266, size: 40, font: "i", fill: C.sky, cls: "fade", style: "animation-delay:1.2s" })}
+  ${text(last, { x: 74, y: 262, size: 32, font: "d", spacing: 9, fill: C.sky, cls: "fade", style: "animation-delay:1.2s" })}
   ${text(cfg.role, { x: 72, y: 306, size: 19, font: "s", fill: "#D5DCFF", max: 640, cls: "fade", style: "animation-delay:1.45s" })}
   <g class="fade" style="animation-delay:1.7s">${chips}</g>
 </g>
@@ -696,7 +696,7 @@ function bannerM() {
   ${text(first, { x: 44, y: 392, size: 84, font: "d", spacing: 1, max: 470, fill: C.red })}
   ${text(first, { x: 40, y: 388, size: 84, font: "d", spacing: 1, max: 470, fill: "url(#nameFill)" })}
   <g transform="translate(${Math.min(40 + nameW + 14, W - 70)} 318)"><rect width="52" height="52" rx="10" fill="${C.seal}"/><text x="26" y="37" text-anchor="middle" font-family="${JP}" font-size="30" font-weight="700" fill="#FFF3EC">忍</text></g>
-  ${text(last, { x: 42, y: 444, size: 42, font: "i", fill: C.sky })}
+  ${text(last, { x: 44, y: 440, size: 34, font: "d", spacing: 7, fill: C.sky })}
   ${role.map((l, i) => text(l, { x: 42, y: 486 + i * 32, size: 24, font: "s", fill: "#D5DCFF" })).join("")}
   ${chips}
 </g>
