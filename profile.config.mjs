@@ -94,7 +94,10 @@ export default {
   ],
 
   // Linked buttons: icon is "mail" or a simple-icons slug
-  buttons: [{ file: "email", label: "hello@rivendevs.in", icon: "mail" }],
+  buttons: [
+    { file: "portfolio", label: "View my portfolio", icon: "globe" },
+    { file: "email", label: "hello@rivendevs.in", icon: "mail" },
+  ],
 
   // Smaller cards under the projects (links are in README.md)
   work: [
