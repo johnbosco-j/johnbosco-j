@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="https://johnbosco-portfolio-gules.vercel.app"><img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/buttons/portfolio.svg" width="230" alt="View my portfolio — johnbosco-portfolio-gules.vercel.app"></a>
-  <a href="mailto:hello@rivendevs.in"><img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/buttons/email.svg" width="230" alt="Email hello@rivendevs.in"></a>
+  <a href="mailto:mailtojjohnbosco@gmail.com"><img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/buttons/email.svg" width="230" alt="Email mailtojjohnbosco@gmail.com"></a>
 </p>
 
 <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/divider.svg" width="100%" alt="">
@@ -133,7 +133,7 @@
 
 <p align="center">
   <a href="https://johnbosco-portfolio-gules.vercel.app"><img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/buttons/portfolio.svg" width="230" alt="View my portfolio — johnbosco-portfolio-gules.vercel.app"></a>
-  <a href="mailto:hello@rivendevs.in"><img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/buttons/email.svg" width="230" alt="Email hello@rivendevs.in"></a>
+  <a href="mailto:mailtojjohnbosco@gmail.com"><img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/buttons/email.svg" width="230" alt="Email mailtojjohnbosco@gmail.com"></a>
 </p>
 
 <picture>
