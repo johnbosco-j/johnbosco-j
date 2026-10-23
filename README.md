@@ -24,7 +24,7 @@
 
 <picture>
   <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/about.svg">
-  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/about.svg" width="100%" alt="Johnbosco J Elanjikal. Based in Chennai, India. B.E. Computer Science and Engineering at LICET, 3rd year. Founder of Riven and full-stack developer. Focus: web platforms, APIs and on-device computer vision. Stack: TypeScript, React, Next.js, Python, FastAPI, Supabase. Speaks English, Tamil and Malayalam.">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/about.svg" width="100%" alt="Johnbosco J Elanjikal. Based in Chennai, India. B.E. Computer Science and Engineering at LICET, 3rd year. Founder of Riven and full-stack developer. Focus: AI agents, on-device AI, web platforms and APIs. Stack: TypeScript, Next.js, Python, FastAPI, Kotlin, Supabase. Speaks English, Tamil and Malayalam.">
 </picture>
 
 <picture>
@@ -35,13 +35,31 @@
 
 <picture>
   <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/projects/row1.svg">
-  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/projects/row1.svg" width="100%" alt="Clareo — private, on-device fatigue, eye-strain and posture coaching: 12 of 12 closed eyes caught, 0 of 46 false positives, 115 automated tests. EyeGuard — real-time fatigue-detection API, 7th at Ctrl Alt Hack 2.0.">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/projects/row1.svg" width="100%" alt="Nijam — free AI scam checker for India in 12 Indian languages: Android shield that checks messages on the phone, web checker, API and MCP server; 90 of 90 scams caught in blind tests, 0 of 54 false alarms, 138 automated tests. Clareo — private, on-device fatigue, eye-strain and posture coaching: 12 of 12 closed eyes caught, 0 of 46 false positives, 115 automated tests.">
 </picture>
 
 <picture>
   <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/projects/row2.svg">
-  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/projects/row2.svg" width="100%" alt="LICET CSE ERP — the department ERP for Computer Science and Engineering at LICET: three user roles, access enforced in Postgres, append-only audit log. Stockfish Chess — the Stockfish engine in WebAssembly workers behind a React UI.">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/projects/row2.svg" width="100%" alt="Sous — a kitchen agent for Alexa+ that keeps everyone at the table safe: 44 MCP tools, 6 Echo Show MCP Apps, 254 automated tests, built for the Amazon Developer Hackathon. CarbonPass — verified embedded-emissions passports for EU CBAM with a hybrid ECDSA and post-quantum ML-DSA verifier sign-off and ERC-1155 tonnes that can't be counted twice, live on Ethereum Sepolia, 28 contract tests.">
 </picture>
+
+<picture>
+  <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/projects/row3.svg">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/projects/row3.svg" width="100%" alt="EyeGuard — real-time fatigue-detection API, 7th at Ctrl Alt Hack 2.0. LICET CSE ERP — the department ERP for Computer Science and Engineering at LICET: three user roles, access enforced in Postgres, append-only audit log.">
+</picture>
+
+<picture>
+  <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/projects/row4.svg">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/projects/row4.svg" width="100%" alt="Stockfish Chess — the Stockfish engine in WebAssembly workers behind a React UI.">
+</picture>
+
+<p align="center">
+  <b>Live:</b>
+  <a href="https://nijam-lime.vercel.app">Nijam</a> ·
+  <a href="https://sous-alexa.vercel.app">Sous</a> (<a href="https://github.com/johnbosco-j/Sous">code</a>) ·
+  <a href="https://carbonpass.vercel.app">CarbonPass</a> (<a href="https://github.com/johnbosco-j/carbonpass">code</a>) ·
+  <a href="https://cseerp.vercel.app">LICET CSE ERP</a> (<a href="https://github.com/johnbosco-j/licetcseerp">code</a>)
+</p>
 
 <div>
 <a href="https://github.com/johnbosco-j/oLearn"><picture>
@@ -70,7 +88,7 @@
 
 <picture>
   <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/stack.svg">
-  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/stack.svg" width="100%" alt="Languages: TypeScript, JavaScript, Python, C, Java, SQL, 8086 assembly. Frameworks: React, Next.js, Vite, Tailwind CSS, three.js, Node.js, FastAPI, Electron, WebAssembly. Data and cloud: Supabase, PostgreSQL, Firebase, Vercel, Resend. AI and vision: OpenCV, MediaPipe, Claude API. Tools: Git, GitHub, GitHub Actions, Linux, Ubuntu.">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/stack.svg" width="100%" alt="Languages: TypeScript, JavaScript, Python, Kotlin, Solidity, C, Java, SQL, 8086 assembly. Frameworks: React, Next.js, Vite, Tailwind CSS, three.js, Node.js, FastAPI, Electron, WebAssembly. Data and cloud: Supabase, PostgreSQL, Firebase, Vercel, Ethereum, Resend. AI and vision: MCP, Claude API, Hugging Face, OpenCV, MediaPipe. Tools: Git, GitHub, GitHub Actions, Android, Linux, Ubuntu.">
 </picture>
 
 <picture>
@@ -85,7 +103,7 @@
 
 <picture>
   <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/now.svg">
-  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/now.svg" width="100%" alt="Running Riven: the company site, client websites and AI work. Building the LICET CSE ERP: attendance, marks and leave for the department, at cseerp.vercel.app. Studying B.E. Computer Science, 3rd year at LICET, Chennai.">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/now.svg" width="100%" alt="Running Riven: the company site, client websites and AI work. Building Nijam: an Android-first AI scam shield for India, in 12 languages. Shipped Sous and CarbonPass: hackathon builds for Alexa+ and IEEE ClimateChain. Studying B.E. Computer Science, 3rd year at LICET, Chennai.">
 </picture>
 
 <picture>

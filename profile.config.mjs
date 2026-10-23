@@ -8,15 +8,15 @@ export default {
   name: { first: "JOHNBOSCO", last: "J ELANJIKAL", full: "Johnbosco J Elanjikal" },
   tag: "BUILDING AT RIVEN",
   role: "Full-stack developer  ·  Founder of Riven  ·  B.E. CSE, LICET",
-  chips: ["TYPESCRIPT · PYTHON", "AI & COMPUTER VISION", "CHENNAI, INDIA"],
+  chips: ["TYPESCRIPT · PYTHON · KOTLIN", "AI AGENTS & ON-DEVICE AI", "CHENNAI, INDIA"],
 
   // Rows on the About card: [label, value]
   about: [
     ["BASED IN", "Chennai, India"],
     ["EDUCATION", "B.E. Computer Science & Engineering, LICET  ·  3rd year"],
     ["ROLE", "Founder of Riven  ·  Full-stack developer"],
-    ["FOCUS", "Web platforms, APIs and on-device computer vision"],
-    ["STACK", "TypeScript · React · Next.js · Python · FastAPI · Supabase"],
+    ["FOCUS", "AI agents, on-device AI, web platforms and APIs"],
+    ["STACK", "TypeScript · Next.js · Python · FastAPI · Kotlin · Supabase"],
     ["LANGUAGES", "English  ·  Tamil  ·  Malayalam"],
   ],
   motto: "Clear technology for the real world.",
@@ -36,6 +36,16 @@ export default {
   // Project cards. `accent` tints the card.
   projects: [
     {
+      file: "nijam",
+      title: "Nijam",
+      kind: "AI SCAM SHIELD FOR INDIA  ·  FOUNDER & LEAD ENGINEER",
+      status: { text: "LIVE", tone: "live" },
+      summary: "A free AI scam checker for India in 12 Indian languages: an Android shield that checks messages on the phone, plus a web checker, API and MCP server.",
+      metrics: [["90/90", "scams caught, blind tests"], ["0/54", "false alarms"], ["138", "automated tests"]],
+      stack: ["Kotlin", "Python", "FastAPI", "Next.js", "Supabase", "MLX"],
+      accent: "#FF8A3D",
+    },
+    {
       file: "clareo",
       title: "Clareo",
       kind: "WEB + DESKTOP  ·  FOUNDER & LEAD ENGINEER",
@@ -44,6 +54,26 @@ export default {
       metrics: [["12/12", "closed eyes caught"], ["0/46", "false positives"], ["115", "automated tests"]],
       stack: ["React", "TypeScript", "MediaPipe", "FastAPI", "Postgres", "Electron"],
       accent: "#3DDC97",
+    },
+    {
+      file: "sous",
+      title: "Sous",
+      kind: "ALEXA+ AGENT  ·  MCP SERVER  ·  AMAZON DEV HACKATHON",
+      status: { text: "LIVE", tone: "live" },
+      summary: "A kitchen agent for Alexa+ that keeps everyone at the table safe: dinner from food about to expire, allergy and diet risks blocked in code, groceries ordered only after a yes.",
+      metrics: [["44", "MCP tools"], ["6", "Echo Show MCP Apps"], ["254", "automated tests"]],
+      stack: ["TypeScript", "MCP", "Amazon Bedrock", "Node.js", "Vercel"],
+      accent: "#F6A72A",
+    },
+    {
+      file: "carbonpass",
+      title: "CarbonPass",
+      kind: "CLIMATE  ·  BLOCKCHAIN  ·  IEEE CLIMATECHAIN 2026",
+      status: { text: "LIVE ON SEPOLIA", tone: "live" },
+      summary: "Verified embedded-emissions passports for EU CBAM: AI reads the invoices, a verifier signs, and on-chain tonnes can never be sold or claimed twice.",
+      metrics: [["ECDSA+ML-DSA", "post-quantum sign-off"], ["ERC-1155", "no double counting"], ["28", "contract tests"]],
+      stack: ["Solidity", "Hardhat", "Next.js", "Ethereum", "AI extraction"],
+      accent: "#5CC8FF",
     },
     {
       file: "eyeguard",
@@ -109,20 +139,21 @@ export default {
 
   // Tech stack rows: [label, [[simple-icons slug or "db", name], …]]
   stack: [
-    ["LANGUAGES", [["typescript", "TypeScript"], ["javascript", "JavaScript"], ["python", "Python"], ["c", "C"], ["openjdk", "Java"], ["db", "SQL"], ["intel", "8086 ASM"]]],
+    ["LANGUAGES", [["typescript", "TypeScript"], ["javascript", "JavaScript"], ["python", "Python"], ["kotlin", "Kotlin"], ["solidity", "Solidity"], ["c", "C"], ["openjdk", "Java"], ["db", "SQL"], ["intel", "8086 ASM"]]],
     ["FRAMEWORKS", [["react", "React"], ["nextdotjs", "Next.js"], ["vite", "Vite"], ["tailwindcss", "Tailwind CSS"], ["threedotjs", "three.js"], ["nodedotjs", "Node.js"], ["fastapi", "FastAPI"], ["electron", "Electron"], ["webassembly", "WebAssembly"]]],
-    ["DATA & CLOUD", [["supabase", "Supabase"], ["postgresql", "PostgreSQL"], ["firebase", "Firebase"], ["vercel", "Vercel"], ["resend", "Resend"]]],
-    ["AI & VISION", [["opencv", "OpenCV"], ["mediapipe", "MediaPipe"], ["claude", "Claude API"]]],
-    ["TOOLS", [["git", "Git"], ["github", "GitHub"], ["githubactions", "GitHub Actions"], ["linux", "Linux"], ["ubuntu", "Ubuntu"]]],
+    ["DATA & CLOUD", [["supabase", "Supabase"], ["postgresql", "PostgreSQL"], ["firebase", "Firebase"], ["vercel", "Vercel"], ["ethereum", "Ethereum"], ["resend", "Resend"]]],
+    ["AI & VISION", [["modelcontextprotocol", "MCP"], ["claude", "Claude API"], ["huggingface", "Hugging Face"], ["opencv", "OpenCV"], ["mediapipe", "MediaPipe"]]],
+    ["TOOLS", [["git", "Git"], ["github", "GitHub"], ["githubactions", "GitHub Actions"], ["android", "Android"], ["linux", "Linux"], ["ubuntu", "Ubuntu"]]],
   ],
 
   // "Currently" card: [kicker, title, detail]
   now: [
     ["RUNNING", "Riven", "The company site, client websites and AI work."],
-    ["BUILDING", "LICET CSE ERP", "Attendance, marks and leave for the department  ·  cseerp.vercel.app"],
+    ["BUILDING", "Nijam", "Android-first AI scam shield for India, 12 languages."],
+    ["SHIPPED", "Sous and CarbonPass", "Hackathon builds for Alexa+ and IEEE ClimateChain."],
     ["STUDYING", "B.E. Computer Science", "3rd year at LICET, Chennai."],
   ],
-  nowUpdated: "UPDATED SEPTEMBER 2026",
+  nowUpdated: "UPDATED OCTOBER 2026",
 
   contact: ["Open to collaborations, client projects and hackathon teams.", "Riven builds websites and AI systems for people who need them, at a minimal cost."],
 
