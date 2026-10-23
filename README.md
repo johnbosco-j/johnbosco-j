@@ -10,7 +10,7 @@
 </picture>
 
 <p align="center">
-  <a href="https://johnbosco-portfolio-gules.vercel.app"><img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/buttons/portfolio.svg" width="230" alt="View my portfolio — johnbosco-portfolio-gules.vercel.app"></a>
+  <a href="https://johnbosco.vercel.app"><img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/buttons/portfolio.svg" width="230" alt="View my portfolio — johnbosco.vercel.app"></a>
   <a href="mailto:mailtojjohnbosco@gmail.com"><img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/buttons/email.svg" width="230" alt="Email mailtojjohnbosco@gmail.com"></a>
 </p>
 
