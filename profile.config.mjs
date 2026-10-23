@@ -124,9 +124,10 @@ export default {
     [", the technology company I founded in 2026. I like problems where software meets the real world, and I build them end to end: database, API, interface, and the part that runs on your device."],
   ],
 
-  // Linked buttons: icon is "mail" or a simple-icons slug
+  // Linked buttons: icon is one of ICONS or a simple-icons slug; colors overrides the red fill
   buttons: [
     { file: "portfolio", label: "View my portfolio", icon: "globe" },
+    { file: "portfolio-previous", label: "Previous portfolio", icon: "history", colors: ["#2F3B7A", "#151C4B"] },
     { file: "email", label: "mailtojjohnbosco@gmail.com", icon: "mail" },
   ],
 
@@ -139,7 +140,7 @@ export default {
     { file: "live-lincys", kicker: "LIVE  ·  CLIENT WEBSITE", title: "Lincy’s Makeover Artistry", desc: "Website for a bridal makeup artist in Chennai.", accent: "#FFC857" },
     { file: "live-riven", kicker: "LIVE  ·  COMPANY WEBSITE", title: "Riven", desc: "Clear technology for the real world.", accent: "#FF6B7A" },
     { file: "live-8086", kicker: "LIVE  ·  8086 EMULATOR", title: "8086 trainer kit", desc: "An 8086 trainer kit emulator in the browser.", accent: "#B69CFF" },
-    { file: "live-portfolio", kicker: "LIVE  ·  PORTFOLIO", title: "Portfolio", desc: "Founder of Riven. Full-stack developer.", accent: "#7BE0AD" },
+    { file: "live-portfolio", kicker: "LIVE  ·  PORTFOLIO", title: "Portfolio", desc: "Cloud intro, CRT about page and a nest of projects.", accent: "#7BE0AD" },
     { file: "olearn", kicker: "E-LEARNING PLATFORM  ·  PROJECT LEAD", title: "oLearn", desc: "Led a 4-member team through a 14-day agile sprint.", accent: "#8FB2FF" },
     { file: "riven-site", kicker: "COMPANY WEBSITE", title: "Riven website", desc: "Next.js 16, TypeScript, Tailwind, Framer Motion and three.js.", accent: "#FF6B7A" },
     { file: "8086", kicker: "EMULATOR  ·  PYTHON", title: "8086 trainer UI", desc: "Full-stack 8086 assembly emulator with a Python backend.", accent: "#B69CFF" },

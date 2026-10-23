@@ -11,6 +11,7 @@
 
 <p align="center">
   <a href="https://johnbosco.vercel.app"><img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/buttons/portfolio.svg" width="230" alt="View my portfolio — johnbosco.vercel.app"></a>
+  <a href="https://johnbosco-portfolio-gules.vercel.app"><img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/buttons/portfolio-previous.svg" width="230" alt="Previous portfolio — johnbosco-portfolio-gules.vercel.app"></a>
   <a href="mailto:mailtojjohnbosco@gmail.com"><img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/buttons/email.svg" width="230" alt="Email mailtojjohnbosco@gmail.com"></a>
 </p>
 
@@ -107,9 +108,9 @@
   <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/work/live-8086.svg">
   <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/work/live-8086.svg" width="100%" alt="8086 trainer kit, live at johnbosco8086emulator.vercel.app: an 8086 trainer kit emulator in the browser.">
 </picture></a>
-<a href="https://johnbosco-portfolio-gules.vercel.app"><picture>
+<a href="https://johnbosco.vercel.app"><picture>
   <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/work/live-portfolio.svg">
-  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/work/live-portfolio.svg" width="100%" alt="Portfolio, live at johnbosco-portfolio-gules.vercel.app.">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/work/live-portfolio.svg" width="100%" alt="Portfolio, live at johnbosco.vercel.app: cloud intro, CRT about page and a nest of projects.">
 </picture></a>
 </div>
 
@@ -185,7 +186,8 @@
 </picture>
 
 <p align="center">
-  <a href="https://johnbosco-portfolio-gules.vercel.app"><img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/buttons/portfolio.svg" width="230" alt="View my portfolio — johnbosco-portfolio-gules.vercel.app"></a>
+  <a href="https://johnbosco.vercel.app"><img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/buttons/portfolio.svg" width="230" alt="View my portfolio — johnbosco.vercel.app"></a>
+  <a href="https://johnbosco-portfolio-gules.vercel.app"><img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/buttons/portfolio-previous.svg" width="230" alt="Previous portfolio — johnbosco-portfolio-gules.vercel.app"></a>
   <a href="mailto:mailtojjohnbosco@gmail.com"><img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/buttons/email.svg" width="230" alt="Email mailtojjohnbosco@gmail.com"></a>
 </p>
 
