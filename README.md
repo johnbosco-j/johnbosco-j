@@ -55,7 +55,7 @@
 
 <p align="center">
   <b>Live:</b>
-  <a href="https://nijam-lime.vercel.app">Nijam</a> ·
+  <a href="https://nijam-lime.vercel.app">Nijam</a> (<a href="https://github.com/johnbosco-j/Nijam.AI">code</a>) ·
   <a href="https://sous-alexa.vercel.app">Sous</a> (<a href="https://github.com/johnbosco-j/Sous">code</a>) ·
   <a href="https://carbonpass.vercel.app">CarbonPass</a> (<a href="https://github.com/johnbosco-j/carbonpass">code</a>) ·
   <a href="https://cseerp.vercel.app">LICET CSE ERP</a> (<a href="https://github.com/johnbosco-j/licetcseerp">code</a>)
