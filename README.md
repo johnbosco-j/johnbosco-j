@@ -95,9 +95,25 @@
   <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/work/live-licet-erp.svg">
   <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/work/live-licet-erp.svg" width="100%" alt="LICET CSE ERP, live at cseerp.vercel.app: attendance, marks and leave for CSE at LICET.">
 </picture></a>
+<a href="https://lincysmakeoverartistry.in"><picture>
+  <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/work/live-lincys.svg">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/work/live-lincys.svg" width="100%" alt="Lincy's Makeover Artistry, live at lincysmakeoverartistry.in: website for a bridal makeup artist in Chennai.">
+</picture></a>
+<a href="https://rivendevs-site.vercel.app"><picture>
+  <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/work/live-riven.svg">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/work/live-riven.svg" width="100%" alt="Riven, live at rivendevs-site.vercel.app: the company website.">
+</picture></a>
+<a href="https://johnbosco8086emulator.vercel.app"><picture>
+  <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/work/live-8086.svg">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/work/live-8086.svg" width="100%" alt="8086 trainer kit, live at johnbosco8086emulator.vercel.app: an 8086 trainer kit emulator in the browser.">
+</picture></a>
+<a href="https://johnbosco-portfolio-gules.vercel.app"><picture>
+  <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/work/live-portfolio.svg">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/work/live-portfolio.svg" width="100%" alt="Portfolio, live at johnbosco-portfolio-gules.vercel.app.">
+</picture></a>
 </div>
 
-<p align="center"><sub>Source: <a href="https://github.com/johnbosco-j/Nijam.AI">Nijam</a> · <a href="https://github.com/johnbosco-j/Sous">Sous</a> · <a href="https://github.com/johnbosco-j/carbonpass">CarbonPass</a> · <a href="https://github.com/johnbosco-j/licetcseerp">LICET CSE ERP</a></sub></p>
+<p align="center"><sub>Source: <a href="https://github.com/johnbosco-j/Nijam.AI">Nijam</a> · <a href="https://github.com/johnbosco-j/Sous">Sous</a> · <a href="https://github.com/johnbosco-j/carbonpass">CarbonPass</a> · <a href="https://github.com/johnbosco-j/licetcseerp">LICET CSE ERP</a> · <a href="https://github.com/johnbosco-j/rivendevs-site">Riven</a> · <a href="https://github.com/johnbosco-j/8086-trainer-emulator-ui">8086 trainer kit</a></sub></p>
 
 <picture>
   <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/headers/stack.svg">
