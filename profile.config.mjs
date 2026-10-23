@@ -26,6 +26,7 @@ export default {
   headers: {
     about: "About",
     projects: "Projects",
+    live: "Try them live",
     stack: "Tech stack",
     now: "Currently",
     achievements: "Achievements",
@@ -131,6 +132,10 @@ export default {
 
   // Smaller cards under the projects (links are in README.md)
   work: [
+    { file: "live-nijam", kicker: "LIVE  ·  AI SCAM CHECKER", title: "Nijam", desc: "Paste a message, get a verdict in your language.", accent: "#FF8A3D" },
+    { file: "live-sous", kicker: "LIVE  ·  ALEXA+ ECHO SHOW SIMULATOR", title: "Sous", desc: "Talk to the kitchen agent in your browser.", accent: "#F6A72A" },
+    { file: "live-carbonpass", kicker: "LIVE  ·  ETHEREUM SEPOLIA", title: "CarbonPass", desc: "Issue, ship and verify a CBAM carbon passport.", accent: "#5CC8FF" },
+    { file: "live-licet-erp", kicker: "LIVE  ·  DEPARTMENT ERP", title: "LICET CSE ERP", desc: "Attendance, marks and leave for CSE at LICET.", accent: "#8FB2FF" },
     { file: "olearn", kicker: "E-LEARNING PLATFORM  ·  PROJECT LEAD", title: "oLearn", desc: "Led a 4-member team through a 14-day agile sprint.", accent: "#8FB2FF" },
     { file: "riven-site", kicker: "COMPANY WEBSITE", title: "Riven website", desc: "Next.js 16, TypeScript, Tailwind, Framer Motion and three.js.", accent: "#FF6B7A" },
     { file: "8086", kicker: "EMULATOR  ·  PYTHON", title: "8086 trainer UI", desc: "Full-stack 8086 assembly emulator with a Python backend.", accent: "#B69CFF" },

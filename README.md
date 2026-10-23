@@ -53,14 +53,6 @@
   <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/projects/row4.svg" width="100%" alt="Stockfish Chess — the Stockfish engine in WebAssembly workers behind a React UI.">
 </picture>
 
-<p align="center">
-  <b>Live:</b>
-  <a href="https://nijam-lime.vercel.app">Nijam</a> (<a href="https://github.com/johnbosco-j/Nijam.AI">code</a>) ·
-  <a href="https://sous-alexa.vercel.app">Sous</a> (<a href="https://github.com/johnbosco-j/Sous">code</a>) ·
-  <a href="https://carbonpass.vercel.app">CarbonPass</a> (<a href="https://github.com/johnbosco-j/carbonpass">code</a>) ·
-  <a href="https://cseerp.vercel.app">LICET CSE ERP</a> (<a href="https://github.com/johnbosco-j/licetcseerp">code</a>)
-</p>
-
 <div>
 <a href="https://github.com/johnbosco-j/oLearn"><picture>
   <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/work/olearn.svg">
@@ -79,6 +71,33 @@
   <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/work/lincys.svg" width="100%" alt="Lincy's Makeover Artistry — website for a certified celebrity makeup artist in Chennai.">
 </picture></a>
 </div>
+
+<picture>
+  <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/headers/live.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/headers/live-dark.svg">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/headers/live-light.svg" width="100%" alt="Try them live">
+</picture>
+
+<div>
+<a href="https://nijam-lime.vercel.app"><picture>
+  <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/work/live-nijam.svg">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/work/live-nijam.svg" width="100%" alt="Nijam, live at nijam-lime.vercel.app: paste a message, get a scam verdict in your language.">
+</picture></a>
+<a href="https://sous-alexa.vercel.app/device"><picture>
+  <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/work/live-sous.svg">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/work/live-sous.svg" width="100%" alt="Sous, live at sous-alexa.vercel.app: talk to the Alexa+ kitchen agent in an Echo Show simulator in your browser.">
+</picture></a>
+<a href="https://carbonpass.vercel.app"><picture>
+  <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/work/live-carbonpass.svg">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/work/live-carbonpass.svg" width="100%" alt="CarbonPass, live at carbonpass.vercel.app on Ethereum Sepolia: issue, ship and verify a CBAM carbon passport.">
+</picture></a>
+<a href="https://cseerp.vercel.app"><picture>
+  <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/work/live-licet-erp.svg">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/work/live-licet-erp.svg" width="100%" alt="LICET CSE ERP, live at cseerp.vercel.app: attendance, marks and leave for CSE at LICET.">
+</picture></a>
+</div>
+
+<p align="center"><sub>Source: <a href="https://github.com/johnbosco-j/Nijam.AI">Nijam</a> · <a href="https://github.com/johnbosco-j/Sous">Sous</a> · <a href="https://github.com/johnbosco-j/carbonpass">CarbonPass</a> · <a href="https://github.com/johnbosco-j/licetcseerp">LICET CSE ERP</a></sub></p>
 
 <picture>
   <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/headers/stack.svg">
