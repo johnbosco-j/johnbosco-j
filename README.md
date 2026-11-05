@@ -36,22 +36,27 @@
 
 <picture>
   <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/projects/row1.svg">
-  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/projects/row1.svg" width="100%" alt="Nijam — free AI scam checker for India in 12 Indian languages: Android shield that checks messages on the phone, web checker, API and MCP server; 90 of 90 scams caught in blind tests, 0 of 54 false alarms, 138 automated tests. Clareo — private, on-device fatigue, eye-strain and posture coaching: 12 of 12 closed eyes caught, 0 of 46 false positives, 115 automated tests.">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/projects/row1.svg" width="100%" alt="Riven TV — a calm, ad-free home screen for Android TV and Google TV with its own Wi-Fi, Bluetooth, sound and display screens and remote-button shortcuts; runs on a 2019 Android TV 8 set; 7 background layers per frame cut to 1, 16 Settings screens. WallLoop — live video wallpapers for macOS from your own videos: about 1.8% CPU for one video on one display, 0 bytes of your videos uploaded, 6 automatic pause triggers.">
 </picture>
 
 <picture>
   <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/projects/row2.svg">
-  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/projects/row2.svg" width="100%" alt="Sous — a kitchen agent for Alexa+ that keeps everyone at the table safe: 44 MCP tools, 6 Echo Show MCP Apps, 254 automated tests, built for the Amazon Developer Hackathon. CarbonPass — verified embedded-emissions passports for EU CBAM with a hybrid ECDSA and post-quantum ML-DSA verifier sign-off and ERC-1155 tonnes that can't be counted twice, live on Ethereum Sepolia, 28 contract tests.">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/projects/row2.svg" width="100%" alt="Nijam — free AI scam checker for India in 12 Indian languages: Android shield that checks messages on the phone, web checker, API and MCP server; 90 of 90 scams caught in blind tests, 0 of 54 false alarms, 138 automated tests. Clareo — private, on-device fatigue, eye-strain and posture coaching: 12 of 12 closed eyes caught, 0 of 46 false positives, 115 automated tests.">
 </picture>
 
 <picture>
   <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/projects/row3.svg">
-  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/projects/row3.svg" width="100%" alt="EyeGuard — real-time fatigue-detection API, 7th at Ctrl Alt Hack 2.0. LICET CSE ERP — the department ERP for Computer Science and Engineering at LICET: three user roles, access enforced in Postgres, append-only audit log.">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/projects/row3.svg" width="100%" alt="Sous — a kitchen agent for Alexa+ that keeps everyone at the table safe: 44 MCP tools, 6 Echo Show MCP Apps, 254 automated tests, built for the Amazon Developer Hackathon. CarbonPass — verified embedded-emissions passports for EU CBAM with a hybrid ECDSA and post-quantum ML-DSA verifier sign-off and ERC-1155 tonnes that can't be counted twice, live on Ethereum Sepolia, 28 contract tests.">
 </picture>
 
 <picture>
   <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/projects/row4.svg">
-  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/projects/row4.svg" width="100%" alt="Stockfish Chess — the Stockfish engine in WebAssembly workers behind a React UI.">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/projects/row4.svg" width="100%" alt="EyeGuard — real-time fatigue-detection API, 7th at Ctrl Alt Hack 2.0. LICET CSE ERP — the department ERP for Computer Science and Engineering at LICET: three user roles, access enforced in Postgres, append-only audit log.">
+</picture>
+
+<picture>
+  <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/projects/row5.svg">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/projects/row5.svg" width="100%" alt="Stockfish Chess — the Stockfish engine in WebAssembly workers behind a React UI.">
 </picture>
 
 <div>
@@ -80,6 +85,18 @@
 </picture>
 
 <div>
+<a href="https://rivendevs-site.vercel.app/tv"><picture>
+  <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/work/live-riven-tv.svg">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/work/live-riven-tv.svg" width="100%" alt="Riven TV, live at rivendevs-site.vercel.app/tv: download the Android TV APK or read how it was built.">
+</picture></a>
+<a href="https://wallloop.vercel.app"><picture>
+  <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/work/live-wallloop.svg">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/work/live-wallloop.svg" width="100%" alt="WallLoop, live at wallloop.vercel.app: live video wallpapers for macOS from your own videos.">
+</picture></a>
+<a href="https://rock-road-for-trucks.vercel.app"><picture>
+  <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/work/live-rock.svg">
+  <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/work/live-rock.svg" width="100%" alt="ROCK – Road for Trucks, live at rock-road-for-trucks.vercel.app: truck-aware navigation around height, weight and width limits.">
+</picture></a>
 <a href="https://nijam-lime.vercel.app"><picture>
   <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/work/live-nijam.svg">
   <img src="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/work/live-nijam.svg" width="100%" alt="Nijam, live at nijam-lime.vercel.app: paste a message, get a scam verdict in your language.">
@@ -114,7 +131,7 @@
 </picture></a>
 </div>
 
-<p align="center"><sub>Source: <a href="https://github.com/johnbosco-j/Nijam.AI">Nijam</a> · <a href="https://github.com/johnbosco-j/Sous">Sous</a> · <a href="https://github.com/johnbosco-j/carbonpass">CarbonPass</a> · <a href="https://github.com/johnbosco-j/licetcseerp">LICET CSE ERP</a> · <a href="https://github.com/johnbosco-j/rivendevs-site">Riven</a> · <a href="https://github.com/johnbosco-j/8086-trainer-emulator-ui">8086 trainer kit</a></sub></p>
+<p align="center"><sub>Source: <a href="https://github.com/johnbosco-j/riven-tv">Riven TV</a> · <a href="https://github.com/johnbosco-j/WallLoop">WallLoop</a> · <a href="https://github.com/johnbosco-j/rock-road-for-trucks">ROCK</a> · <a href="https://github.com/johnbosco-j/Nijam.AI">Nijam</a> · <a href="https://github.com/johnbosco-j/Sous">Sous</a> · <a href="https://github.com/johnbosco-j/carbonpass">CarbonPass</a> · <a href="https://github.com/johnbosco-j/licetcseerp">LICET CSE ERP</a> · <a href="https://github.com/johnbosco-j/rivendevs-site">Riven</a> · <a href="https://github.com/johnbosco-j/8086-trainer-emulator-ui">8086 trainer kit</a></sub></p>
 
 <picture>
   <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/johnbosco-j/johnbosco-j/main/assets/m/headers/stack.svg">

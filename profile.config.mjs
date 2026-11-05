@@ -37,6 +37,26 @@ export default {
   // Project cards. `accent` tints the card.
   projects: [
     {
+      file: "riven-tv",
+      title: "Riven TV",
+      kind: "ANDROID TV LAUNCHER  ·  FOUNDER & LEAD ENGINEER",
+      status: { text: "V2.0 RELEASED", tone: "live" },
+      summary: "A calm, ad-free home screen for Android TV and Google TV, with Riven's own Wi-Fi, Bluetooth, sound and display screens and remote-button shortcuts. Runs on a 2019 Android TV 8 set.",
+      metrics: [["7 → 1", "background layers per frame"], ["16", "Settings screens"], ["Android 8+", "and Google TV"]],
+      stack: ["Kotlin", "Jetpack Compose", "Android TV", "ADB"],
+      accent: "#9B8CFF",
+    },
+    {
+      file: "wallloop",
+      title: "WallLoop",
+      kind: "MACOS APP  ·  FOUNDER & LEAD ENGINEER",
+      status: { text: "0.1 PREVIEW", tone: "live" },
+      summary: "Live video wallpapers for macOS from your own videos: muted, hardware-decoded and quiet, living in the menu bar. Free and open source.",
+      metrics: [["~1.8%", "CPU, one video, one display"], ["0 bytes", "of your videos uploaded"], ["6", "automatic pause triggers"]],
+      stack: ["Swift", "macOS 14+", "Menu bar app"],
+      accent: "#FF7AA8",
+    },
+    {
       file: "nijam",
       title: "Nijam",
       kind: "AI SCAM SHIELD FOR INDIA  ·  FOUNDER & LEAD ENGINEER",
@@ -133,6 +153,9 @@ export default {
 
   // Smaller cards under the projects (links are in README.md)
   work: [
+    { file: "live-riven-tv", kicker: "LIVE  ·  ANDROID TV LAUNCHER", title: "Riven TV", desc: "Download the APK or read how it was built.", accent: "#9B8CFF" },
+    { file: "live-wallloop", kicker: "LIVE  ·  MACOS APP", title: "WallLoop", desc: "Live video wallpapers from your own videos.", accent: "#FF7AA8" },
+    { file: "live-rock", kicker: "LIVE  ·  TEAM PROJECT", title: "ROCK – Road for Trucks", desc: "Truck-aware navigation around height, weight and width limits.", accent: "#7BE0AD" },
     { file: "live-nijam", kicker: "LIVE  ·  AI SCAM CHECKER", title: "Nijam", desc: "Paste a message, get a verdict in your language.", accent: "#FF8A3D" },
     { file: "live-sous", kicker: "LIVE  ·  ALEXA+ ECHO SHOW SIMULATOR", title: "Sous", desc: "Talk to the kitchen agent in your browser.", accent: "#F6A72A" },
     { file: "live-carbonpass", kicker: "LIVE  ·  ETHEREUM SEPOLIA", title: "CarbonPass", desc: "Issue, ship and verify a CBAM carbon passport.", accent: "#5CC8FF" },
@@ -149,8 +172,8 @@ export default {
 
   // Tech stack rows: [label, [[simple-icons slug or "db", name], …]]
   stack: [
-    ["LANGUAGES", [["typescript", "TypeScript"], ["javascript", "JavaScript"], ["python", "Python"], ["kotlin", "Kotlin"], ["solidity", "Solidity"], ["c", "C"], ["openjdk", "Java"], ["db", "SQL"], ["intel", "8086 ASM"]]],
-    ["FRAMEWORKS", [["react", "React"], ["nextdotjs", "Next.js"], ["vite", "Vite"], ["tailwindcss", "Tailwind CSS"], ["threedotjs", "three.js"], ["nodedotjs", "Node.js"], ["fastapi", "FastAPI"], ["electron", "Electron"], ["webassembly", "WebAssembly"]]],
+    ["LANGUAGES", [["typescript", "TypeScript"], ["javascript", "JavaScript"], ["python", "Python"], ["kotlin", "Kotlin"], ["swift", "Swift"], ["solidity", "Solidity"], ["c", "C"], ["openjdk", "Java"], ["db", "SQL"], ["intel", "8086 ASM"]]],
+    ["FRAMEWORKS", [["react", "React"], ["jetpackcompose", "Jetpack Compose"], ["nextdotjs", "Next.js"], ["vite", "Vite"], ["tailwindcss", "Tailwind CSS"], ["threedotjs", "three.js"], ["nodedotjs", "Node.js"], ["fastapi", "FastAPI"], ["electron", "Electron"], ["webassembly", "WebAssembly"]]],
     ["DATA & CLOUD", [["supabase", "Supabase"], ["postgresql", "PostgreSQL"], ["firebase", "Firebase"], ["vercel", "Vercel"], ["ethereum", "Ethereum"], ["resend", "Resend"]]],
     ["AI & VISION", [["modelcontextprotocol", "MCP"], ["claude", "Claude API"], ["huggingface", "Hugging Face"], ["opencv", "OpenCV"], ["mediapipe", "MediaPipe"]]],
     ["TOOLS", [["git", "Git"], ["github", "GitHub"], ["githubactions", "GitHub Actions"], ["android", "Android"], ["linux", "Linux"], ["ubuntu", "Ubuntu"]]],
@@ -159,11 +182,11 @@ export default {
   // "Currently" card: [kicker, title, detail]
   now: [
     ["RUNNING", "Riven", "The company site, client websites and AI work."],
+    ["SHIPPED", "Riven TV", "Ad-free Android TV home screen, v2.0."],
     ["BUILDING", "Nijam", "Android-first AI scam shield for India, 12 languages."],
-    ["SHIPPED", "Sous and CarbonPass", "Hackathon builds for Alexa+ and IEEE ClimateChain."],
     ["STUDYING", "B.E. Computer Science", "3rd year at LICET, Chennai."],
   ],
-  nowUpdated: "UPDATED OCTOBER 2026",
+  nowUpdated: "UPDATED NOVEMBER 2026",
 
   contact: ["Open to collaborations, client projects and hackathon teams.", "Riven builds websites and AI systems for people who need them, at a minimal cost."],
 
